@@ -36,12 +36,12 @@ npm init
 
 ```bash
 
-cd server \&\& npm start
+cd server && npm start
 
 ```
 
 2. Start the client:
 
 ```bash
-cd client \&\& npm start
+cd client && npm start
 ```
