@@ -1,4 +1,4 @@
-# admin_kids
+# AdminKids
 Backend service for managing families, children and visit history in a children playroom. Built with Node.js and SQLite.
 
 This is my first pet project, designed for track children's visit to a playing room.
