@@ -1,11 +1,14 @@
 # AdminKids
+
 Backend service for managing families, children and visit history in a children playroom. Built with Node.js and SQLite.
 
-This is my first pet project, designed for track children's visit to a playing room.
+<br>
 
+> This is my first pet project, designed for track children's visit to a playing room.
 
+<br>
 
-##### Installation:
+### Installation:
 
 First, clone the repository:
 
@@ -14,11 +17,7 @@ git clone https://github.com/NeRudic/admin_kids.git
 
 ```
 
-
-
-##### After install:
-
-
+### After install:
 
 You need to install dependencies in both the client and server folders. Go to each directory and run:
 
@@ -28,9 +27,7 @@ npm init
 
 ```
 
-
-
-##### Usage:
+### Usage:
 
 1. Start the server:
 
