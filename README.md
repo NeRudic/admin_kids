@@ -10,7 +10,7 @@ This is my first pet project, designed for track children's visit to a playing r
 First, clone the repository:
 
 ```bash
-git clone https://github.com/NeRudic/admin\_kids.git
+git clone https://github.com/NeRudic/admin_kids.git
 
 ```
 
