@@ -1,4 +1,4 @@
-import { dbRun } from "./repository.js";
+import { dbRun } from "./DB_class.js";
 
 const sql = `
 CREATE TABLE IF NOT EXISTS family (
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS adult (
   role_id INTEGER NOT NULL,
 
   CONSTRAINT family_id_fk FOREIGN KEY (family_id) REFERENCES family(id) ON DELETE CASCADE,
-  CONSTRAINT role_id_fk FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+  CONSTRAINT role_id_fk FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS phone (
@@ -44,7 +44,6 @@ CREATE TABLE IF NOT EXISTS children (
 
 CREATE TABLE IF NOT EXISTS visit (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  children_id INTEGER NOT NULL,
   brought_by_adult_id INTEGER NOT NULL,
   start_time DATE NOT NULL,
   end_time DATE,
@@ -52,6 +51,14 @@ CREATE TABLE IF NOT EXISTS visit (
   CONSTRAINT children_id_fk_visit FOREIGN KEY (children_id) REFERENCES children(id) ON DELETE CASCADE,
   CONSTRAINT adult_id_fk_visit FOREIGN KEY (brought_by_adult_id) REFERENCES adult(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS childrenVisit (
+  children_id INTEGER NOT NULL,
+  visit_id INTEGER NOT NULL,
+
+  CONSTRAINT children_id_childrenVisit FOREIGN KEY (children_id) REFERENCES children(id) ON DELETE CASCADE,
+  CONSTRAINT visit_id_childrenVisit FOREIGN KEY (visit_id) REFERENCES visit(id) ON DELETE CASCADE
+)
 `;
 
 export default async function createTable(sql) {
