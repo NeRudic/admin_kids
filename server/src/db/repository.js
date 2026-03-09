@@ -37,4 +37,12 @@ export class DB {
       });
     });
   }
+
+  close() {
+    return new Promise((res, rej) => {
+      this.db.close((err) => {
+        err ? rej(err) : res("Database was closed!");
+      });
+    });
+  }
 }
