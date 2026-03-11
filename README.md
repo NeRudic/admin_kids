@@ -17,13 +17,11 @@ git clone https://github.com/NeRudic/admin_kids.git
 
 ```
 
-### After install:
-
-You need to install dependencies in both the client and server folders. Go to each directory and run:
+Then you need to install dependencies in both the client and server folders. Go to each directory and run:
 
 ```bash
 
-npm init
+npm install
 
 ```
 
