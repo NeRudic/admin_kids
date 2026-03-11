@@ -1,0 +1,12 @@
+body {
+  color: var(--text-color);
+}
+
+a:visited {
+  color: var(--link-color);
+}
+
+.main {
+  margin: 0 auto;
+  max-width: 1280px;
+}
