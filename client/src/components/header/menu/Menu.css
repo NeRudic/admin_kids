@@ -1,0 +1,21 @@
+.menu_list {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu_list nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  list-style: none;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.active {
+  color: #216ad8;
+}
