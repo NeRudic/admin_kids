@@ -1,0 +1,7 @@
+<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.000000" height="20.000000" fill="none" customFrame="#000000">
+	<rect id="Icon/Plus/Outline" width="20.000000" height="20.000000" x="0.000000" y="0.000000" fill="rgb(255,255,255)" fill-opacity="0" />
+	<rect id="Icon/Plus/Outline" width="18.000000" height="18.000000" x="1.000000" y="1.000000" stroke="rgb(46,180,115)" stroke-opacity="0" stroke-width="2.000000" />
+	<circle id="Ellipse" cx="10" cy="10" r="10" fill="rgb(180,46,46)" />
+	<circle id="Ellipse" cx="10" cy="10" r="7.5" stroke="rgb(180,46,46)" stroke-width="5.000000" />
+	<path id="Plus" d="M0.5 3.75L3.75 3.75L3.75 0.5C3.75 0.223858 3.97386 0 4.25 0L5.75 0C6.02614 0 6.25 0.223858 6.25 0.5L6.25 3.75L9.5 3.75C9.77614 3.75 10 3.97386 10 4.25L10 5.75C10 6.02614 9.77614 6.25 9.5 6.25L6.25 6.25L6.25 9.5C6.25 9.77614 6.02614 10 5.75 10L4.25 10C3.97386 10 3.75 9.77614 3.75 9.5L3.75 6.25L0.5 6.25C0.223858 6.25 0 6.02614 0 5.75L0 4.25C0 3.97386 0.223858 3.75 0.5 3.75Z" fill="rgb(255,255,255)" fill-rule="evenodd" transform="matrix(0.707107,-0.707107,0.707107,0.707107,2.92896,10)" />
+</svg>

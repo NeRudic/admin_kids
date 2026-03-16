@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../styles/assets/fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mulish";
+  src: url("../styles/assets/fonts/Mulish-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../styles/assets/fonts/Mulish-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../styles/assets/fonts/Mulish-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("../styles/assets/fonts/Mulish-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.mt-bd {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+.msh-exl {
+  font-family: "Mulish";
+  font-weight: 200;
+}
+.msh-bd {
+  font-family: "Mulish";
+  font-weight: 700;
+}
+.msh-exb {
+  font-family: "Mulish";
+  font-weight: 800;
+}
+.msh-bl {
+  font-family: "Mulish";
+  font-weight: 900;
+}

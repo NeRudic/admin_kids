@@ -1,20 +1,20 @@
 import "./App.css";
-
+import Header from "./components/header/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <>
-      <header>
-        <div className="main">
-          <div className="logo"></div>
-          <ul className="menu">
-            <li>Сім'ї</li>
-            <li>Вiзити</li>
-            <li>Iсторiя</li>
-          </ul>
-          <img src="/settings.svg" alt="Settings" />
-        </div>
-        <div className="settings"></div>
-      </header>
+      <Router>
+        <Header />
+        <Routes>
+          {/*
+        <Route path="/families" element={<Families/>}>
+        <Route path="/visits" element={<Visits/>}>
+        <Route path="/story" element={<Story>}> */}
+        </Routes>
+      </Router>
+
+      <div className="wrapper max-w-[1200px]"></div>
     </>
   );
 }

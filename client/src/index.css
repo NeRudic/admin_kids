@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --logo-color: #3a56ab;
+}
+
+body {
+  min-height: 100dvh;
+  width: 100%;
+  background: linear-gradient(
+    to top right,
+    rgba(220, 209, 255, 0.45),
+    rgba(199, 230, 255, 0.45),
+    rgba(197, 255, 228, 0.45)
+  );
+}
+
+.wrapper.dark {
+  background: linear-gradient(to top right, rgb(5, 14, 44), rgb(6, 56, 67));
+
+  min-height: 100dvh;
+  width: 100%;
 }

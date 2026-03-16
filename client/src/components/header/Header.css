@@ -1,0 +1,132 @@
+:root {
+  --background-primary: #fff;
+
+  /* Header */
+  --header-height: 65px;
+  --settings-height: 25.5px;
+  --settings-width: var(--settings-height);
+
+  --button-height: 50px;
+  --menu-list-color: #4f5159;
+  --active-tab-color: #1cf08f;
+
+  /* Header DropDown */
+  --drop-down-width: 189px;
+}
+
+/* header */
+
+header {
+  position: relative;
+  height: var(--header-height);
+  background-color: var(--background-primary);
+}
+
+.header_wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.header_wrapper nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* logo */
+
+.logo h1 {
+  color: var(--logo-color);
+  font-size: 45px;
+}
+
+/* menu */
+
+.menu_list {
+  display: flex;
+  height: var(--header-height);
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu_list li {
+  position: relative;
+  font-size: 20px;
+  padding: 0 17px;
+}
+
+/* ссылки */
+
+.menu_list a {
+  height: var(--button-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  padding: 0 30px;
+}
+
+.menu_list ul {
+  color: var(--menu-list-color);
+}
+
+/* active */
+
+.menu_list a.active {
+  background-color: var(--active-tab-color);
+  transition: 0.8s;
+}
+
+/* dropdown */
+
+.new_family {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--drop-down-width);
+
+  display: none;
+  background-color: var(--background-primary);
+}
+
+/* показываем dropdown */
+
+.families:hover .new_family {
+  display: block;
+}
+
+/* dropdown items */
+
+.new_family li {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  padding: 11px 0;
+  cursor: pointer;
+}
+
+.new_family li span {
+  display: block;
+  margin: 0 auto;
+}
+
+/* settings */
+
+.settings {
+  position: absolute;
+  height: var(--header-height);
+  aspect-ratio: 1/1;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings img {
+  height: var(--settings-height);
+  width: var(--settings-width);
+}
