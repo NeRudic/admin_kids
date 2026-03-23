@@ -1,17 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --logo-color: #3a56ab;
+  --background: #fff;
+  --secondary: #5075e5;
+  --white: #fff;
+  --background-primary: rgba(80, 117, 229, 0.42);
+  --background-secondary: #fff;
+
+  --table-bg: #bac8fc;
+  --table-item-bg: rgba(80, 117, 229, 0.5);
+
   --main-background: linear-gradient(
     to top right,
-    rgba(220, 209, 255, 0.45),
-    rgba(199, 230, 255, 0.45),
-    rgba(197, 255, 228, 0.45)
+    rgba(220, 209, 255, 0.85),
+    rgba(199, 230, 255, 0.85),
+    rgba(197, 255, 228, 0.85)
   );
 }
 
 .dark {
-  --logo-color: #fff;
+  --background: #112339;
+  --background-primary: #20344c;
+  --background-secondary: #20344c;
+
   --main-background: linear-gradient(
     to top right,
     rgb(6, 56, 67),

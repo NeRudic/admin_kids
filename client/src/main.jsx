@@ -3,14 +3,17 @@ import { createRoot } from "react-dom/client";
 import "./styles/fonts.css";
 import "./index.css";
 import App from "./App.jsx";
-import { ThemeProvider } from "./theme/ThemeProvider.jsx";
+import { ThemeProvider } from "./context/ThemeProvider";
+import { NewClientModalProvider } from "./context/NewClientModalProvider";
 
 const root = document.getElementById("root");
 
 createRoot(root).render(
   <StrictMode>
     <ThemeProvider>
-      <App />
+      <NewClientModalProvider>
+        <App />
+      </NewClientModalProvider>
     </ThemeProvider>
   </StrictMode>,
 );

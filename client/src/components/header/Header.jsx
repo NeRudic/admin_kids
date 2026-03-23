@@ -1,10 +1,13 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../../theme/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
+import { NewClientModalContext } from "../../context/NewClientModalContext";
 
 export default function Header() {
   const { themeHandler } = useContext(ThemeContext);
+  const { modalHandler } = useContext(NewClientModalContext);
+
   return (
     <>
       <header className="header block">
@@ -21,19 +24,19 @@ export default function Header() {
                 <NavLink to="/families" className="header_link flex gap-[10px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 16.4749 9.98743"
                     width="16.474854"
                     height="9.987427"
                     fill="none"
-                    customFrame="#000000"
+                    customframe="#000000"
                   >
                     <path
                       id="DropDown"
                       d="M7 14L0 7L7 0"
                       stroke="rgb(79,81,89)"
-                      stroke-linejoin="round"
-                      stroke-width="3.500000"
+                      strokeLinejoin="round"
+                      strokeWidth="3.500000"
                       transform="matrix(6.12323e-17,-1,1,6.12323e-17,1.23743,8.23743)"
                     />
                   </svg>
@@ -42,7 +45,7 @@ export default function Header() {
 
                 <ul className="new_family">
                   <li>
-                    <span>Додати сім'ю</span>
+                    <span onClick={() => modalHandler()}>Додати сім'ю</span>
                   </li>
                 </ul>
               </li>
