@@ -5,4 +5,20 @@ footer {
   height: 66px;
   width: 100%;
   background: var(--secondary);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 22px;
+}
+
+.date_time {
+  text-align: right;
+}
+
+.client_counter,
+.time,
+.date {
+  font-size: 18px;
+  color: var(--white);
 }

@@ -1,5 +1,13 @@
+:root {
+  --nf_main_color: #153065;
+}
+
+.dark {
+  --nf_main_color: #ededed;
+}
+
 .nf_wrapper {
-  height: 500px;
+  height: 600px;
   width: 950px;
   margin-top: 138px;
 
@@ -66,26 +74,32 @@
   border-radius: 22px;
 }
 
+p.mt-bd {
+  font-size: 26px;
+}
+
 .nf_family_info {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 20px;
 }
 
-.nf_family_wrapper,
-.nf_phone_wrapper {
+.nf_family_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.nf_family_wrapper .mt-bd,
-.nf_phone_wrapper .mt-bd {
-  font-size: 25px;
+.nf_family_wrapper .mt-bd {
+  font-size: 26px;
+  color: var(--nf_main_color);
 }
 
-.nf_form input[type="text"] {
-  width: 482px;
+.nf_form input[type="text"],
+.nf_form input[type="tel"] {
+  width: 422px;
+  height: 40px;
 
   text-align: left;
   box-sizing: border-box;
@@ -95,7 +109,8 @@
   padding-left: 32px;
 
   background: #fff;
-  border-radius: 22px;
+  border-radius: 20px;
+  outline: 1px solid #868686;
 }
 
 .nf_form input::placeholder {
@@ -103,4 +118,49 @@
   font-weight: 700;
   font-size: 25px;
   transform: translateY(3px);
+}
+
+.section_title {
+  display: flex;
+  width: 100%;
+  margin-bottom: 18px;
+  font-size: 30px;
+  color: var(--nf_main_color);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add_button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add_button svg {
+  width: 30px;
+  height: 30px;
+}
+
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 15px;
+
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 25px;
+
+  border: 1px #868686 solid;
+  border-radius: 22px;
+  color: #868686;
+  background: var(--white);
+  outline: #868686;
+
+  appearance: none; /* убирает дефолтную стрелку */
+  -webkit-appearance: none; /* для Safari */
+  -moz-appearance: none;
+}
+
+form:focus {
+  border: 1px #868686 solid;
 }

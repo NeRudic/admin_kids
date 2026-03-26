@@ -1,0 +1,60 @@
+.nf_adult {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nf_adult input[type="text"],
+.nf_adult input[type="tel"] {
+  width: 366px;
+}
+
+.select_adult {
+  display: flex;
+}
+
+.select_wrapper {
+  position: relative;
+
+  height: 40px;
+  width: 186px;
+}
+
+#adult_role_selector option,
+#child_role_selector option {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.drop_down_swg {
+  position: absolute;
+  width: 14px;
+  height: 7px;
+  right: 15px;
+  top: calc(50% + 2px);
+
+  transform: translateY(-100%);
+
+  color: #868686;
+}
+
+.adult_fields {
+  max-width: 482px;
+}
+
+.smaller_field input[type="text"] {
+  width: 186px;
+}
+
+.field_phone {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.field_phone svg {
+  height: 40px;
+  width: 40px;
+}
