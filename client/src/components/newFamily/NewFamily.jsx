@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import "./NewFamily.css";
 import Svg from "./svg/Svg";
 import NewAdult from "./newAdult/NewAdult";
@@ -7,11 +7,48 @@ export default function NewFamily() {
   const { svg_add, svg_close } = Svg();
 
   const {
-    // Коллбек, который принимает поля name и options{}
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      familyName: "",
+      adults: [],
+      children: [],
+    },
+    mode: "onChange",
+  });
+
+  // Init array
+  // fields - массив взрослых
+  const {
+    fields: adultFields,
+    append: appendAdult,
+    remove: removeAdult,
+  } = useFieldArray({
+    control,
+    name: "adults",
+    rules: {
+      minLength: { value: 1, message: "Додайте хоча б одного дорослого!" },
+    },
+  });
+
+  const {
+    fields: childrenFields,
+    append: appendChild,
+    remove: removeChild,
+  } = useFieldArray({
+    control,
+    name: "children",
+    rules: {
+      minLength: { value: 1, message: "Додайте хоча б одну дитину" },
+    },
+  });
+
+  const onInvalid = (formErrors) => {
+    console.log("Увага!", formErrors);
+  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -29,63 +66,62 @@ export default function NewFamily() {
       {/* Form */}
 
       <div className="nf_form">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
           <div className="form_wrapper">
             <div className="nf_family_info">
               <div className="nf_family_wrapper">
                 <p className="mt-bd">Сім'я</p>
-                <input type="text" placeholder="Введiть назву сiм'ї" />
+                <div className="field_family_name">
+                  {errors.familyName && (
+                    <p className="error_text family_name_error msh-bd">
+                      {errors.familyName.message}
+                    </p>
+                  )}
+                  <input
+                    type="text"
+                    placeholder="Введiть назву сiм'ї"
+                    {...register("familyName", {
+                      required: `Це поле обов'язково!`,
+                    })}
+                  />
+                </div>
               </div>
             </div>
 
             {/* Adults */}
             <div className="section_title">
               <p className="mt-bd">Дорослі</p>
-              <div className="add_button">
+              <div
+                className="add_button"
+                onClick={() => {
+                  appendAdult({ role: "", name: "", phone: "+380" });
+                }}
+              >
                 {svg_add()}
                 <p className="mt-bd">Додати дорослого</p>
               </div>
             </div>
 
             <div className="adults_add_wrapper">
-              <NewAdult />
+              {adultFields.map((field, index) => {
+                return (
+                  <NewAdult
+                    key={field.id}
+                    index={index}
+                    register={register}
+                    remove={() => {
+                      removeAdult(index);
+                    }}
+                    errors={errors}
+                  />
+                );
+              })}
             </div>
 
             {/* Children */}
+            {/* Здесь будет похожая форма, как и у взрослого */}
 
-            {/*
-            <div className="background_wrapper">
-                  
-            <p className="section_title mt-bd">Діти</p>
-                </div> 
-            <div className="nf_family_children">
-              <div className="add_child">
-                <div className="role_selector">
-                  <div className="selector_wrapper">
-                    <p>Роль</p>
-                    <select name="child_role_selector" id="child_role_selector">
-                      <option value="mother">Син</option>
-                      <option value="father">Донька</option>
-                      <option value="father">Онук</option>
-                      <option value="father">Онучка</option>
-                    </select>
-                  </div>
-
-                  <div className="added_roles">
-                    {/* Add the function for adding roles*/}
-            {/*  </div>
-                </div>
-
-                <div className="add_child_fields">
-                  <div className="field_child_name">
-                    <input type="text" placeholder="Сергiй" />
-                    <div className="add_button">{svg_add()}</div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-            {/* <button type="submit">Зареєструвати</button> */}
+            <button type="submit">Зареєструвати</button>
           </div>
         </form>
       </div>

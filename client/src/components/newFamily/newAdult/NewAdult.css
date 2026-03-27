@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  margin-bottom: 15px;
 }
 
 .nf_adult input[type="text"],
@@ -57,4 +59,23 @@
 .field_phone svg {
   height: 40px;
   width: 40px;
+}
+
+.remove_button {
+  cursor: pointer;
+}
+
+.field_name,
+.field_phone {
+  position: relative;
+}
+
+.name_error,
+.phone_error {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -100%);
+  text-align: center;
 }

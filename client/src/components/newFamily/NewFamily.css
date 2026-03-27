@@ -113,6 +113,19 @@ p.mt-bd {
   outline: 1px solid #868686;
 }
 
+.field_family_name {
+  position: relative;
+}
+
+.family_name_error {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -100%);
+  text-align: center;
+}
+
 .nf_form input::placeholder {
   font-family: "Montserrat";
   font-weight: 700;
@@ -123,7 +136,7 @@ p.mt-bd {
 .section_title {
   display: flex;
   width: 100%;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   font-size: 30px;
   color: var(--nf_main_color);
   justify-content: space-between;
@@ -134,6 +147,8 @@ p.mt-bd {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  cursor: pointer;
 }
 
 .add_button svg {
@@ -163,4 +178,8 @@ select {
 
 form:focus {
   border: 1px #868686 solid;
+}
+
+.error_text {
+  color: var(--error-color);
 }
