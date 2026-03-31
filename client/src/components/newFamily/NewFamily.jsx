@@ -1,16 +1,20 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import "./NewFamily.css";
+import useFamilyFields from "./fields/useFamilyFields.js";
 import Svg from "./svg/Svg";
+import Handlers from "./handlers/Handlers.js";
 import NewAdult from "./newAdult/NewAdult";
+import NewChild from "./newChild/NewChild.jsx";
+import SectionTitle from "./titleSection/SectionTitle.jsx";
 
-export default function NewFamily() {
-  const { svg_add, svg_close } = Svg();
-
+export default function NewFamily({ newClientModalHandler }) {
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, touchedFields, isSubmitted },
+    reset,
+    setError,
   } = useForm({
     defaultValues: {
       familyName: "",
@@ -20,39 +24,22 @@ export default function NewFamily() {
     mode: "onChange",
   });
 
-  // Init array
-  // fields - массив взрослых
-  const {
-    fields: adultFields,
-    append: appendAdult,
-    remove: removeAdult,
-  } = useFieldArray({
-    control,
-    name: "adults",
-    rules: {
-      minLength: { value: 1, message: "Додайте хоча б одного дорослого!" },
-    },
-  });
+  const { svg_close } = Svg();
+  const { adults, children } = useFamilyFields(control);
+  const { onSubmit, onInvalid } = Handlers(
+    reset,
+    newClientModalHandler,
+    setError,
+  );
 
-  const {
-    fields: childrenFields,
-    append: appendChild,
-    remove: removeChild,
-  } = useFieldArray({
-    control,
-    name: "children",
-    rules: {
-      minLength: { value: 1, message: "Додайте хоча б одну дитину" },
-    },
-  });
+  const adults_field_handler = () =>
+    adults.append({
+      role: "",
+      name: "",
+      phone: "+380",
+    });
 
-  const onInvalid = (formErrors) => {
-    console.log("Увага!", formErrors);
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const children_field_type = () => children.append({ role: "", name: "" });
 
   return (
     // FormTitle
@@ -60,7 +47,9 @@ export default function NewFamily() {
     <div className="nf_wrapper" onClick={(e) => e.stopPropagation()}>
       <div className="nf_title mt-bd">
         <h2>Реєстрація нової сім'ї</h2>
-        <span className="close_icon">{svg_close()}</span>
+        <span className="close_icon" onClick={() => newClientModalHandler()}>
+          {svg_close()}
+        </span>
       </div>
 
       {/* Form */}
@@ -69,14 +58,15 @@ export default function NewFamily() {
         <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
           <div className="form_wrapper">
             <div className="nf_family_info">
-              <div className="nf_family_wrapper">
+              <div className="nf_family_wrapper mt-bd">
                 <p className="mt-bd">Сім'я</p>
                 <div className="field_family_name">
-                  {errors.familyName && (
-                    <p className="error_text family_name_error msh-bd">
-                      {errors.familyName.message}
-                    </p>
-                  )}
+                  {(touchedFields.familyName || isSubmitted) &&
+                    errors.familyName && (
+                      <p className="error_text family_name_error msh-bd">
+                        {errors.familyName.message}
+                      </p>
+                    )}
                   <input
                     type="text"
                     placeholder="Введiть назву сiм'ї"
@@ -89,28 +79,22 @@ export default function NewFamily() {
             </div>
 
             {/* Adults */}
-            <div className="section_title">
-              <p className="mt-bd">Дорослі</p>
-              <div
-                className="add_button"
-                onClick={() => {
-                  appendAdult({ role: "", name: "", phone: "+380" });
-                }}
-              >
-                {svg_add()}
-                <p className="mt-bd">Додати дорослого</p>
-              </div>
-            </div>
+            <SectionTitle
+              title_label="Дорослi"
+              button_label="Додати дорослого"
+              onAdd={adults_field_handler}
+              error_message={errors?.adults?.message}
+            />
 
             <div className="adults_add_wrapper">
-              {adultFields.map((field, index) => {
+              {adults.fields.map((field, index) => {
                 return (
                   <NewAdult
                     key={field.id}
                     index={index}
                     register={register}
                     remove={() => {
-                      removeAdult(index);
+                      adults.remove(index);
                     }}
                     errors={errors}
                   />
@@ -119,9 +103,40 @@ export default function NewFamily() {
             </div>
 
             {/* Children */}
+
+            <SectionTitle
+              title_label="Дiти"
+              button_label="Додати дитину"
+              onAdd={children_field_type}
+              error_message={errors?.children?.message}
+            />
+
+            <div className="children_add_wrapper">
+              {children.fields.map((field, index) => {
+                return (
+                  <NewChild
+                    key={field.id}
+                    index={index}
+                    register={register}
+                    remove={() => {
+                      children.remove(index);
+                    }}
+                    errors={errors}
+                  />
+                );
+              })}
+            </div>
             {/* Здесь будет похожая форма, как и у взрослого */}
 
-            <button type="submit">Зареєструвати</button>
+            <button
+              type="submit"
+              className="nf_submit_button mt-bd"
+              disabled={
+                !(adults.fields.length > 0 && children.fields.length > 0)
+              }
+            >
+              Зареєструвати
+            </button>
           </div>
         </form>
       </div>

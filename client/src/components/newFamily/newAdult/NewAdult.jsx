@@ -6,18 +6,28 @@ export default function NewAdult({ index, register, remove, errors }) {
 
   const nameError = errors?.adults?.[index]?.name?.message;
   const phoneError = errors?.adults?.[index]?.phone?.message;
+  const adultRoleError = errors?.adults?.[index]?.role?.message;
 
   return (
-    <div className="nf_adult">
+    <div className="nf_adult mt-bd">
       <div className="select_wrapper">
-        <select name="adult_role_selector" id="adult_role_selector">
+        {errors.adults && (
+          <p className="error_text role_error msh-bd">{adultRoleError}</p>
+        )}
+        <select
+          name="adult_role_selector"
+          id="adult_role_selector"
+          {...register(`adults.${index}.role`, {
+            required: "Оберіть роль",
+          })}
+        >
           <option value="mother">Мама</option>
           <option value="father">Тато</option>
           <option value="grandmother">Бабуся</option>
           <option value="grandfather">Дідусь</option>
         </select>
 
-        <div className="drop_down_swg">{svg_drop_down()}</div>
+        <div className="svg_drop_down">{svg_drop_down()}</div>
       </div>
 
       <div className="field_name smaller_field">
@@ -33,16 +43,25 @@ export default function NewAdult({ index, register, remove, errors }) {
         />
       </div>
       <div className="field_phone">
-        {errors.adults && (
-          <p className="error_text phone_error msh-bd">{phoneError}</p>
-        )}
-        <input
-          type="tel"
-          placeholder="Номер телефону"
-          {...register(`adults.${index}.phone`, {
-            required: `Це поле обов'язково!`,
-          })}
-        />
+        <div className="phone_input_wrapper">
+          {errors.adults && (
+            <p className="error_text phone_error msh-bd">{phoneError}</p>
+          )}
+          <input
+            type="tel"
+            placeholder="Номер телефону"
+            {...register(`adults.${index}.phone`, {
+              required: `Це поле обов'язково!`,
+              pattern: {
+                value: /^\+380\d{9}$/,
+                message: "Формат: +380XXXXXXXXX (9 цифр після +380)",
+                minLength: { value: 13, message: "Номер має бути 13 символів" },
+                maxLength: { value: 13, message: "Номер має бути 13 символів" },
+              },
+            })}
+          />
+        </div>
+
         <div className="remove_button" onClick={remove}>
           {svg_remove()}
         </div>

@@ -1,0 +1,27 @@
+.nf_child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.role_text {
+  width: 186px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 25px;
+
+  border-radius: 20px;
+
+  background: #9eb0f1;
+  color: var(--white);
+}
+
+.field_name {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}

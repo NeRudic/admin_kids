@@ -4,12 +4,12 @@ import { useState } from "react";
 export function NewClientModalProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const modalHandler = () => {
+  const newClientModalHandler = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
-    <NewClientModalContext value={{ isOpen, modalHandler }}>
+    <NewClientModalContext value={{ isOpen, newClientModalHandler }}>
       {children}
     </NewClientModalContext>
   );

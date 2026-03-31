@@ -7,7 +7,7 @@ import { useContext } from "react";
 import NewFamily from "./components/newFamily/NewFamily";
 
 export default function App() {
-  const { isOpen, modalHandler } = useContext(NewClientModalContext);
+  const { isOpen, newClientModalHandler } = useContext(NewClientModalContext);
 
   return (
     <>
@@ -16,9 +16,9 @@ export default function App() {
         <div className="main_wrapper">
           <div
             className={isOpen ? "overlay" : "none"}
-            onClick={isOpen ? modalHandler : undefined}
+            onClick={isOpen ? newClientModalHandler : undefined}
           >
-            <NewFamily />
+            <NewFamily newClientModalHandler={newClientModalHandler} />
           </div>
         </div>
 

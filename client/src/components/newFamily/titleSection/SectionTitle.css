@@ -1,0 +1,8 @@
+.section_title {
+  display: flex;
+  width: 100%;
+  font-size: 30px;
+  color: var(--nf_main_color);
+  justify-content: space-between;
+  align-items: center;
+}

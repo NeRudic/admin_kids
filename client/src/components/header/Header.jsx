@@ -6,7 +6,7 @@ import { NewClientModalContext } from "../../context/NewClientModalContext";
 
 export default function Header() {
   const { themeHandler } = useContext(ThemeContext);
-  const { modalHandler } = useContext(NewClientModalContext);
+  const { newClientModalHandler } = useContext(NewClientModalContext);
 
   return (
     <>
@@ -45,7 +45,9 @@ export default function Header() {
 
                 <ul className="new_family">
                   <li>
-                    <span onClick={() => modalHandler()}>Додати сім'ю</span>
+                    <span onClick={() => newClientModalHandler()}>
+                      Додати сім'ю
+                    </span>
                   </li>
                 </ul>
               </li>
