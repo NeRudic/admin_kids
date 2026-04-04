@@ -1,4 +1,4 @@
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import "./NewFamily.css";
 import useFamilyFields from "./fields/useFamilyFields.js";
 import Svg from "./svg/Svg";
@@ -26,7 +26,7 @@ export default function NewFamily({ newClientModalHandler }) {
 
   const { svg_close } = Svg();
   const { adults, children } = useFamilyFields(control);
-  const { onSubmit, onInvalid } = Handlers(
+  const { onInvalid, onSubmit } = new Handlers(
     reset,
     newClientModalHandler,
     setError,
@@ -39,7 +39,8 @@ export default function NewFamily({ newClientModalHandler }) {
       phone: "+380",
     });
 
-  const children_field_type = () => children.append({ role: "", name: "" });
+  const children_field_type = () =>
+    children.append({ role: "", name: "", birthDate: "" });
 
   return (
     // FormTitle

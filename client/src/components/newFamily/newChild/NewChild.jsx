@@ -1,15 +1,58 @@
-import "./NewChild.css";
 import Svg from "../svg/Svg";
+
+import "./NewChild.css";
 
 export default function NewChild({ index, register, remove, errors }) {
   const { svg_remove, svg_drop_down } = Svg();
   const nameError = errors?.children?.[index]?.name?.message;
   const childrenRoleError = errors?.children?.[index]?.role?.message;
+  const childrenDateError = errors?.children?.[index]?.birthDate?.message;
+
+  const requireMessage = `Це поле обов'язково!`;
 
   return (
     <div className="nf_child mt-bd">
-      <div className="role_text">
-        <p className="child_role">Роль</p>
+      <div className="date_wrapper">
+        {errors.children && (
+          <p className="error_text child_date_error msh-bd">
+            {childrenDateError}
+          </p>
+        )}
+        <input
+          type="text"
+          placeholder="DD.MM.YYYY"
+          {...register(`children.${index}.birthDate`, {
+            required: "Вкажіть дату народження",
+            pattern: {
+              value: /^\d{2}\.\d{2}\.\d{4}$/,
+              message: "Формат дати має бути DD.MM.YYYY",
+            },
+            validate: (value) => {
+              const [day, month, year] = value.split(".").map(Number);
+              // Правильный порядок: year, month - 1, day
+              const date = new Date(year, month - 1, day);
+
+              const currentYear = new Date().getFullYear();
+              const minYear = currentYear - 15;
+
+              // Проверка на существование даты (например, 31.02.2023)
+              if (
+                date.getFullYear() !== year ||
+                date.getMonth() + 1 !== month ||
+                date.getDate() !== day
+              ) {
+                return "Некоректна дата";
+              }
+
+              // Проверка диапазона лет
+              if (year < minYear || year > currentYear) {
+                return `Рік має бути від ${minYear} до ${currentYear}`;
+              }
+
+              return true;
+            },
+          })}
+        />
       </div>
 
       <div className="select_wrapper">
@@ -39,7 +82,7 @@ export default function NewChild({ index, register, remove, errors }) {
           type="text"
           placeholder="Iм'я"
           {...register(`children.${index}.name`, {
-            required: `Це поле обов'язково!`,
+            required: requireMessage,
           })}
           className="child_name"
         />

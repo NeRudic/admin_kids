@@ -1,13 +1,21 @@
-export default function Handlers(reset, modalHandler, setError) {
-  const onInvalid = (formErrors) => {
-    console.log("Увага!", formErrors);
-  };
+import { createFamilyUrl } from "../../../api/family.api";
 
-  const onSubmit = (data) => {
+class Handlers {
+  constructor(reset, modalHandler, setError) {
+    this.reset = reset;
+    this.modalHandler = modalHandler;
+    this.setError = setError;
+  }
+
+  onInvalid(formErrors) {
+    console.log("Увага!", formErrors);
+  }
+
+  onSubmit = (data) => {
     let hasError = false;
 
     if (!data?.adults?.length) {
-      setError("adults", {
+      this.setError("adults", {
         type: "minLength",
         message: "Додайте хоча б одного дорослого!",
       });
@@ -16,7 +24,7 @@ export default function Handlers(reset, modalHandler, setError) {
     }
 
     if (!data?.children?.length) {
-      setError("children", {
+      this.setError("children", {
         type: "minLength",
         message: "Додайте хоча б одну дитину!",
       });
@@ -28,10 +36,23 @@ export default function Handlers(reset, modalHandler, setError) {
       return;
     }
 
-    console.log(data);
-    reset();
-    modalHandler();
+    this.sendData(data);
   };
 
-  return { onInvalid, onSubmit };
+  sendData = (data) => {
+    const requestData = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    };
+
+    fetch(createFamilyUrl, requestData)
+      .then((res) => console.log("Data sent seccesfully! Status: ", res.status))
+      .catch((err) => console.log("Data sent failed! Error:", err));
+
+    this.reset();
+    this.modalHandler();
+  };
 }
+
+export default Handlers;

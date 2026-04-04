@@ -1,25 +1,17 @@
 import "dotenv/config";
 import express from "express";
+import router from "./routes/index.js";
+import cors from "cors";
+import { corsConfig } from "./config/corsConfig.js";
 import { DB } from "./src/db/db.js";
 
-const PORT = process.env.PORT || 5000;
+//DB init
+export const db = new DB(process.env.DB_PATH);
+
 const app = express();
 
-const DB_PATH = process.env.DB_PATH;
-
+app.use(cors(corsConfig));
 app.use(express.json());
+app.use("/api", router);
 
-const run = async () => {
-  try {
-    const db = new DB(DB_PATH);
-
-    app.listen(PORT, () => {
-      console.log(`App has been started on port: ${PORT}`);
-    });
-  } catch (e) {
-    console.log(`Unexpected error: ${e.message}`);
-    process.exit(1);
-  }
-};
-
-run();
+export default app;

@@ -1,18 +1,11 @@
 import "dotenv/config";
-import express from "express";
-import createTable from "./src/db/index.js";
+import app, { db } from "./app.js";
 
 const PORT = process.env.PORT || 5000;
-const app = express();
-
-const DB_PATH = process.env.DB_PATH;
-
-app.use(express.json());
 
 const run = async () => {
   try {
-    // Waiting for DB creating
-    await createTable();
+    await db.connect();
 
     app.listen(PORT, () => {
       console.log(`App has been started on port: ${PORT}`);

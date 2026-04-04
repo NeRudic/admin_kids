@@ -102,10 +102,8 @@
   color: var(--nf_main_color);
 }
 
-.nf_form input {
-  width: 422px;
+input {
   height: 40px;
-
   text-align: left;
   box-sizing: border-box;
 
@@ -116,6 +114,10 @@
   background: #fff;
   border-radius: 20px;
   outline: 1px solid #868686;
+}
+
+.nf_form input[name="familyName"] {
+  width: 422px;
 }
 
 .field_family_name {
@@ -134,7 +136,7 @@
 .nf_form input::placeholder {
   font-family: "Montserrat";
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
   transform: translateY(3px);
 }
 
@@ -253,11 +255,13 @@ select,
 .name_error,
 .phone_error,
 .role_error,
-.children_role_error {
+.children_role_error,
+.child_date_error {
   position: absolute;
   top: 0;
   left: 50%;
   width: 100%;
   transform: translate(-50%, -100%);
   text-align: center;
+  white-space: nowrap;
 }

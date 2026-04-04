@@ -4,16 +4,34 @@ import "dotenv/config";
 export class DB {
   constructor(DB_PATH) {
     this.path = DB_PATH;
+    this.db = null; // Изначально пусто
+  }
 
-    this.db = new sqlite3.Database(this.path, (err) => {
-      if (err) {
-        throw new Error(err.message);
-      } else {
-        console.log("Database connected");
-      }
+  // Метод для инициализации
+  connect() {
+    return new Promise((resolve, reject) => {
+      this.db = new sqlite3.Database(this.path, (err) => {
+        if (err) {
+          console.error("Database connection error:", err.message);
+          return reject(err);
+        } else {
+          console.log("Database connected");
+          resolve();
+        }
+      });
     });
   }
 
+  // Для множественных запросов (CREATE TABLE, миграции и т.д.) — без параметров
+  exec(sql) {
+    return new Promise((res, rej) => {
+      this.db.exec(sql, (err) => {
+        err ? rej(err) : res();
+      });
+    });
+  }
+
+  // Для одиночных запросов с параметрами (INSERT, UPDATE, DELETE)
   run(sql, params = []) {
     return new Promise((res, rej) => {
       this.db.run(sql, params, function (err) {
