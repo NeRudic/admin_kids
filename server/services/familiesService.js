@@ -1,6 +1,6 @@
 import { db } from "../app.js";
 
-export async function createFamily({ familyName, adults, children }) {
+export async function createFamilyService({ familyName, adults, children }) {
   try {
     //Begin the transaction
     await db.run("BEGIN TRANSACTION");
@@ -41,7 +41,7 @@ export async function createFamily({ familyName, adults, children }) {
 
     await db.run(`COMMIT`);
 
-    return { id: familyId, familyName };
+    return { id: familyId, familyName: familyName };
   } catch (error) {
     await db.run(`ROLLBACK`);
     throw error;
