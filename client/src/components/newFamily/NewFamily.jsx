@@ -34,13 +34,13 @@ export default function NewFamily({ newClientModalHandler }) {
 
   const adults_field_handler = () =>
     adults.append({
-      role: "",
+      roleId: "",
       name: "",
       phone: "+380",
     });
 
   const children_field_type = () =>
-    children.append({ role: "", name: "", birthDate: "" });
+    children.append({ roleId: "", name: "", birthDate: "" });
 
   return (
     // FormTitle

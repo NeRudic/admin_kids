@@ -36,23 +36,34 @@ class Handlers {
       return;
     }
 
+    console.log(data);
+
     this.sendData(data);
   };
 
-  sendData = (data) => {
-    const requestData = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    };
+  async sendData(requestData) {
+    try {
+      const res = await fetch(createFamilyUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
-    fetch(createFamilyUrl, requestData)
-      .then((res) => console.log("Data sent seccesfully! Status: ", res.status))
-      .catch((err) => console.log("Data sent failed! Error:", err));
+      if (!res.ok) {
+        throw new Error(res.message || `Server error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log("Data sent successfully!", data);
+    } catch (err) {
+      console.error("Data sent failed! Error:", err.message);
+    }
 
     this.reset();
     this.modalHandler();
-  };
+  }
 }
 
 export default Handlers;

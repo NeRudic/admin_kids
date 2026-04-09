@@ -6,7 +6,7 @@ export default function NewAdult({ index, register, remove, errors }) {
 
   const nameError = errors?.adults?.[index]?.name?.message;
   const phoneError = errors?.adults?.[index]?.phone?.message;
-  const adultRoleError = errors?.adults?.[index]?.role?.message;
+  const adultRoleError = errors?.adults?.[index]?.roleId?.message;
 
   return (
     <div className="nf_adult mt-bd">
@@ -17,14 +17,23 @@ export default function NewAdult({ index, register, remove, errors }) {
         <select
           name="adult_role_selector"
           id="adult_role_selector"
-          {...register(`adults.${index}.role`, {
+          {...register(`adults.${index}.roleId`, {
+            valueAsNumber: true,
             required: "Оберіть роль",
           })}
         >
-          <option value="mother">Мама</option>
-          <option value="father">Тато</option>
-          <option value="grandmother">Бабуся</option>
-          <option value="grandfather">Дідусь</option>
+          <option value="1" data-role_name="Мама">
+            Мама
+          </option>
+          <option value="2" data-role_name="Тато">
+            Тато
+          </option>
+          <option value="7" data-role_name="Бабуся">
+            Бабуся
+          </option>
+          <option value="8" data-role_name="Дідусь">
+            Дідусь
+          </option>
         </select>
 
         <div className="svg_drop_down">{svg_drop_down()}</div>

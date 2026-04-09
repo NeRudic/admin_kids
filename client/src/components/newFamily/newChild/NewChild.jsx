@@ -5,7 +5,7 @@ import "./NewChild.css";
 export default function NewChild({ index, register, remove, errors }) {
   const { svg_remove, svg_drop_down } = Svg();
   const nameError = errors?.children?.[index]?.name?.message;
-  const childrenRoleError = errors?.children?.[index]?.role?.message;
+  const childrenRoleError = errors?.children?.[index]?.roleId?.message;
   const childrenDateError = errors?.children?.[index]?.birthDate?.message;
 
   const requireMessage = `Це поле обов'язково!`;
@@ -64,12 +64,17 @@ export default function NewChild({ index, register, remove, errors }) {
         <select
           name="child_role_selector"
           id="child_role_selector"
-          {...register(`children.${index}.role`, {
+          {...register(`children.${index}.roleId`, {
+            valueAsNumber: true,
             required: `Оберіть роль`,
           })}
         >
-          <option value="son">Син</option>
-          <option value="doughter">Донька</option>
+          <option value="1" data-role_name="Син">
+            Син
+          </option>
+          <option value="2" data-role_name="Донька">
+            Донька
+          </option>
         </select>
         <div className="svg_drop_down">{svg_drop_down()}</div>
       </div>
