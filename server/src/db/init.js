@@ -1,8 +1,6 @@
-import DB from "./db";
+import { db } from "../../app.js";
 
-const db = new DB(process.env.DB_PATH);
-
-const sql = `
+export const sql = `
 CREATE TABLE IF NOT EXISTS family (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   family_name TEXT NOT NULL
@@ -32,7 +30,7 @@ CREATE TABLE IF NOT EXISTS adult (
 
 CREATE TABLE IF NOT EXISTS phone (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  phone_number TEXT UNIQUE NOT NULL,
+  phone_number TEXT NOT NULL,
   family_id INTEGER NOT NULL,
   adult_id INTEGER,
 
@@ -84,7 +82,9 @@ CREATE INDEX IF NOT EXISTS idx_children_first_name ON children(child_name);
 INSERT OR IGNORE INTO adult_roles (key, label) VALUES
 
 ('mother', 'Мама'),
-('father', 'Тато');
+('father', 'Тато'),
+('grandmother', 'Бабуся'),
+('grandfather', 'Дiдусь');
 
 INSERT OR IGNORE INTO children_roles (key, label) VALUES
 
@@ -93,8 +93,6 @@ INSERT OR IGNORE INTO children_roles (key, label) VALUES
 
 `;
 
-async function createTable(sql) {
-  await db.exec(sql, null);
+export default async function initDB() {
+  await db.exec(sql);
 }
-
-export default createTable(sql);

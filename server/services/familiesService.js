@@ -44,6 +44,7 @@ export async function createFamilyService({ familyName, adults, children }) {
     return { id: familyId, familyName: familyName };
   } catch (error) {
     await db.run(`ROLLBACK`);
+    // console.error("Database Error:", error.message);
     throw error;
   }
 }

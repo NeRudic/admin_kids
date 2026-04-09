@@ -1,6 +1,9 @@
 import sqlite3 from "sqlite3";
 import "dotenv/config";
 
+const verbose = sqlite3.verbose;
+verbose();
+
 export class DB {
   constructor(DB_PATH) {
     this.path = DB_PATH;
@@ -19,6 +22,7 @@ export class DB {
           resolve();
         }
       });
+      this.db.run("PRAGMA foreign_keys = ON;");
     });
   }
 

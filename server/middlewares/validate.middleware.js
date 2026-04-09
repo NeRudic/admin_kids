@@ -1,5 +1,6 @@
 export const validate = (schema) => {
   return (req, res, next) => {
+    console.log("Данные приняты");
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
@@ -10,6 +11,7 @@ export const validate = (schema) => {
 
     req.body = result.data;
 
+    console.log("Данные переданы в контроллер");
     next();
   };
 };
