@@ -6,9 +6,7 @@ import App from "./App.js";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { NewClientModalProvider } from "./context/NewClientModalProvider";
 
-const root = document.getElementById("root");
-
-createRoot(root).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <NewClientModalProvider>
