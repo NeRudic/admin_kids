@@ -1,4 +1,4 @@
-import "./SectionTitle.css";
+import "./TitleSection.css";
 import Svg from "../svg/Svg";
 
 interface TitleSectionInterface {
