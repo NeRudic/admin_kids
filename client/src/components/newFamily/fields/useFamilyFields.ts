@@ -1,6 +1,7 @@
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray, Control } from "react-hook-form";
+import { NewFamilyInterface } from "../../../.types";
 
-export default function useFamilyFields(control) {
+export default function useFamilyFields(control: Control<NewFamilyInterface>) {
   const adults = useFieldArray({
     control,
     name: "adults",
