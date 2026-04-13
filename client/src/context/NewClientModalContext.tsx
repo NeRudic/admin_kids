@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export interface ModalContextType {
   isOpen: boolean;
@@ -8,3 +8,15 @@ export interface ModalContextType {
 export const NewClientModalContext = createContext<ModalContextType | null>(
   null,
 );
+
+export const useNewClientModal = () => {
+  const context = useContext(NewClientModalContext);
+
+  if (!context) {
+    throw new Error(
+      "useNewClientModal must be used within a NewClientModalProvider",
+    );
+  }
+
+  return context;
+};

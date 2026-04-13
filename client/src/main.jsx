@@ -2,9 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/fonts.css";
 import "./index.css";
-import App from "./App.jsx";
-import { ThemeProvider } from "./context/ThemeProvider.tsx";
-import { NewClientModalProvider } from "./context/NewClientModalProvider.tsx";
+import App from "./App.js";
+import { ThemeProvider } from "./context/ThemeProvider";
+import { NewClientModalProvider } from "./context/NewClientModalProvider";
 
 const root = document.getElementById("root");
 
