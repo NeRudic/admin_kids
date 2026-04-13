@@ -1,10 +1,17 @@
 import { ThemeContext } from "./ThemeContext";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+
+type ThemeState = "dark" | "light";
+
+interface ChildrenInterface {
+  children: ReactNode;
+}
 
 // {children} - деструктуризация
-export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
+export function ThemeProvider({ children }: ChildrenInterface) {
+  const [theme, setTheme] = useState<ThemeState>(() => {
+    const current = localStorage.getItem("theme");
+    return current === "dark" || current === "light" ? current : "light";
   });
   const themeHandler = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));

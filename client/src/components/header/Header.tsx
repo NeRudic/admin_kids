@@ -5,8 +5,8 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { NewClientModalContext } from "../../context/NewClientModalContext";
 
 export default function Header() {
-  const { themeHandler } = useContext(ThemeContext);
-  const { newClientModalHandler } = useContext(NewClientModalContext);
+  const { themeHandler } = useContext(ThemeContext)!;
+  const { newClientModalHandler } = useContext(NewClientModalContext)!;
 
   return (
     <>
@@ -29,7 +29,6 @@ export default function Header() {
                     width="16.474854"
                     height="9.987427"
                     fill="none"
-                    customframe="#000000"
                   >
                     <path
                       id="DropDown"

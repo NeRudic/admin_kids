@@ -40,7 +40,6 @@ export default function Svg() {
       width="16.474854"
       height="9.987427"
       fill="none"
-      customframe="#000000"
     >
       <path
         id="DropDown"
