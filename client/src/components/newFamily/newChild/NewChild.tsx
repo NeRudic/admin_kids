@@ -3,20 +3,13 @@ import { UseFormRegister } from "react-hook-form";
 import { FieldErrors } from "react-hook-form";
 import { NewFamilyInterface } from "../../../.types";
 import "./NewChild.css";
-
-interface NewChildInterface {
-  index: number;
-  register: UseFormRegister<NewFamilyInterface>;
-  remove: () => void;
-  errors: FieldErrors<NewFamilyInterface>;
-}
-
+import { NewChildAdultInterface } from "../../../.types";
 export default function NewChild({
   index,
   register,
   remove,
   errors,
-}: NewChildInterface) {
+}: NewChildAdultInterface) {
   const { svg_remove, svg_drop_down } = Svg();
   const nameError = errors?.children?.[index]?.name?.message;
   const childrenRoleError = errors?.children?.[index]?.roleId?.message;

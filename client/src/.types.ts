@@ -1,3 +1,5 @@
+import { UseFormRegister, FieldErrors } from "react-hook-form";
+
 export type Void = () => void;
 
 export interface NewFamilyInterface {
@@ -12,4 +14,11 @@ export interface NewFamilyInterface {
     birthDate: string;
     roleId: number;
   }[];
+}
+
+export interface NewChildInterface {
+  index: number;
+  register: UseFormRegister<NewFamilyInterface>;
+  remove: () => void;
+  errors: FieldErrors<NewFamilyInterface>;
 }
