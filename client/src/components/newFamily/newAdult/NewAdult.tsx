@@ -1,7 +1,13 @@
 import "./NewAdult.css";
 import Svg from "../svg/Svg";
+import { NewChildAdultInterface } from "../../../.types";
 
-export default function NewAdult({ index, register, remove, errors }) {
+export default function NewAdult({
+  index,
+  register,
+  remove,
+  errors,
+}: NewChildAdultInterface) {
   const { svg_drop_down, svg_remove } = Svg();
 
   const nameError = errors?.adults?.[index]?.name?.message;
@@ -15,7 +21,6 @@ export default function NewAdult({ index, register, remove, errors }) {
           <p className="error_text role_error msh-bd">{adultRoleError}</p>
         )}
         <select
-          name="adult_role_selector"
           id="adult_role_selector"
           {...register(`adults.${index}.roleId`, {
             valueAsNumber: true,
@@ -64,9 +69,9 @@ export default function NewAdult({ index, register, remove, errors }) {
               pattern: {
                 value: /^\+380\d{9}$/,
                 message: "Формат: +380XXXXXXXXX (9 цифр після +380)",
-                minLength: { value: 13, message: "Номер має бути 13 символів" },
-                maxLength: { value: 13, message: "Номер має бути 13 символів" },
               },
+              minLength: { value: 13, message: "Номер має бути 13 символів" },
+              maxLength: { value: 13, message: "Номер має бути 13 символів" },
             })}
           />
         </div>

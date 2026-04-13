@@ -1,9 +1,7 @@
 import Svg from "../svg/Svg";
-import { UseFormRegister } from "react-hook-form";
-import { FieldErrors } from "react-hook-form";
-import { NewFamilyInterface } from "../../../.types";
 import "./NewChild.css";
 import { NewChildAdultInterface } from "../../../.types";
+
 export default function NewChild({
   index,
   register,
