@@ -1,17 +1,23 @@
 import { createFamilyUrl } from "../../../api/family.api";
+import { Void, NewFamilyInterface } from "../../../.types";
+import { UseFormReset, UseFormSetError, FieldErrors } from "react-hook-form";
 
 class Handlers {
-  constructor(reset, modalHandler, setError) {
+  constructor(
+    public reset: UseFormReset<NewFamilyInterface>,
+    public modalHandler: Void,
+    public setError: UseFormSetError<NewFamilyInterface>,
+  ) {
     this.reset = reset;
     this.modalHandler = modalHandler;
     this.setError = setError;
   }
 
-  onInvalid(formErrors) {
+  onInvalid(formErrors: FieldErrors<NewFamilyInterface>) {
     console.log("Увага!", formErrors);
   }
 
-  onSubmit = (data) => {
+  onSubmit = (data: NewFamilyInterface) => {
     let hasError = false;
 
     if (!data?.adults?.length) {
@@ -41,7 +47,7 @@ class Handlers {
     this.sendData(data);
   };
 
-  async sendData(requestData) {
+  async sendData(requestData: NewFamilyInterface) {
     try {
       const res = await fetch(createFamilyUrl, {
         method: "POST",
@@ -52,13 +58,18 @@ class Handlers {
       });
 
       if (!res.ok) {
-        throw new Error(res.message || `Server error: ${res.status}`);
+        const errorMessage = await res.json();
+        throw new Error(errorMessage.message || `Server error: ${res.status}`);
       }
 
       const data = await res.json();
       console.log("Data sent successfully!", data);
     } catch (err) {
-      console.error("Data sent failed! Error:", err.message);
+      if (err instanceof Error) {
+        console.error("Data sent failed! Error:", err.message);
+      } else {
+        console.error("An unknown error occurred", err);
+      }
     }
 
     this.reset();
