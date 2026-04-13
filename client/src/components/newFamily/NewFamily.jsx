@@ -5,7 +5,7 @@ import Svg from "./svg/Svg";
 import Handlers from "./handlers/Handlers.js";
 import NewAdult from "./newAdult/NewAdult";
 import NewChild from "./newChild/NewChild.jsx";
-import SectionTitle from "./titleSection/SectionTitle.jsx";
+import TitleSection from "./titleSection/TitleSection.jsx";
 
 export default function NewFamily({ newClientModalHandler }) {
   const {
@@ -80,7 +80,7 @@ export default function NewFamily({ newClientModalHandler }) {
             </div>
 
             {/* Adults */}
-            <SectionTitle
+            <TitleSection
               title_label="Дорослi"
               button_label="Додати дорослого"
               onAdd={adults_field_handler}
@@ -105,7 +105,7 @@ export default function NewFamily({ newClientModalHandler }) {
 
             {/* Children */}
 
-            <SectionTitle
+            <TitleSection
               title_label="Дiти"
               button_label="Додати дитину"
               onAdd={children_field_type}

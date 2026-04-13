@@ -1,8 +1,22 @@
 import Svg from "../svg/Svg";
-
+import { UseFormRegister } from "react-hook-form";
+import { FieldErrors } from "react-hook-form";
+import { NewFamilyInterface } from "../../../.types";
 import "./NewChild.css";
 
-export default function NewChild({ index, register, remove, errors }) {
+interface NewChildInterface {
+  index: number;
+  register: UseFormRegister<NewFamilyInterface>;
+  remove: () => void;
+  errors: FieldErrors<NewFamilyInterface>;
+}
+
+export default function NewChild({
+  index,
+  register,
+  remove,
+  errors,
+}: NewChildInterface) {
   const { svg_remove, svg_drop_down } = Svg();
   const nameError = errors?.children?.[index]?.name?.message;
   const childrenRoleError = errors?.children?.[index]?.roleId?.message;
@@ -62,7 +76,6 @@ export default function NewChild({ index, register, remove, errors }) {
           </p>
         )}
         <select
-          name="child_role_selector"
           id="child_role_selector"
           {...register(`children.${index}.roleId`, {
             valueAsNumber: true,
