@@ -1,4 +1,5 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { ReactNode } from "react";
 
 export type Void = () => void;
 
@@ -16,9 +17,13 @@ export interface NewFamilyInterface {
   }[];
 }
 
-export interface NewChildInterface {
+export interface NewChildAdultInterface {
   index: number;
   register: UseFormRegister<NewFamilyInterface>;
   remove: () => void;
   errors: FieldErrors<NewFamilyInterface>;
+}
+
+export interface ChildrenInterface {
+  children: ReactNode;
 }

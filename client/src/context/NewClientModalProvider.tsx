@@ -1,9 +1,6 @@
 import { NewClientModalContext } from "./NewClientModalContext";
-import { useState, ReactNode } from "react";
-
-interface ChildrenInterface {
-  children: ReactNode;
-}
+import { useState } from "react";
+import { ChildrenInterface } from "../.types";
 
 export function NewClientModalProvider({ children }: ChildrenInterface) {
   const [isOpen, setIsOpen] = useState(false);

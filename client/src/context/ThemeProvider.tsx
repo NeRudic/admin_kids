@@ -1,11 +1,8 @@
 import { ThemeContext } from "./ThemeContext";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ChildrenInterface } from "../.types";
 
 type ThemeState = "dark" | "light";
-
-interface ChildrenInterface {
-  children: ReactNode;
-}
 
 // {children} - деструктуризация
 export function ThemeProvider({ children }: ChildrenInterface) {

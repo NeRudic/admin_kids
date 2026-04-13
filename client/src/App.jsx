@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { NewClientModalContext } from "./context/NewClientModalContext.tsx";
+import { NewClientModalContext } from "./context/NewClientModalContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import NewFamily from "./components/newFamily/NewFamily";
