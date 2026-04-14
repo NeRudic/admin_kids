@@ -3,7 +3,6 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { useNewClientModal } from "./context/NewClientModalContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useContext } from "react";
 import NewFamily from "./components/newFamily/NewFamily";
 
 export default function App() {
