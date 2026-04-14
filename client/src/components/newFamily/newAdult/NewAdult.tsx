@@ -1,5 +1,5 @@
 import "./NewAdult.css";
-import Svg from "../svg/Svg";
+import Svg from "../../svg/Svg";
 import { NewChildAdultInterface } from "../../../.types";
 
 export default function NewAdult({

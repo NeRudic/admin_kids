@@ -1,5 +1,7 @@
+import React from "react";
+
 export default function Svg() {
-  const svg_close = () => (
+  const svg_close = (): React.JSX.Element => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 45.2549 45.2549"
@@ -16,7 +18,7 @@ export default function Svg() {
     </svg>
   );
 
-  const svg_add = () => (
+  const svg_add = (): React.JSX.Element => (
     <svg
       width="100"
       height="100"
@@ -32,7 +34,7 @@ export default function Svg() {
     </svg>
   );
 
-  const svg_drop_down = () => (
+  const svg_drop_down = (): React.JSX.Element => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -52,7 +54,7 @@ export default function Svg() {
     </svg>
   );
 
-  const svg_remove = () => (
+  const svg_remove = (): React.JSX.Element => (
     <svg
       width="100"
       height="100"
@@ -68,5 +70,17 @@ export default function Svg() {
     </svg>
   );
 
-  return { svg_add, svg_close, svg_drop_down, svg_remove };
+  const svg_eye = (): React.JSX.Element => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="currentColor"
+    >
+      <path d="M23.92 11.6C23.72 11.2 19.52 3 12 3S.28 11.2.08 11.6a1 1 0 0 0 0 .9C.28 12.8 4.48 21 12 21s11.72-8.2 11.92-8.5a1 1 0 0 0 0-.9ZM2.08 12C3.08 10.4 6.59 5 12 5s8.92 5.4 9.92 7c-1 1.6-4.51 7-9.92 7s-8.92-5.4-9.92-7ZM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
+    </svg>
+  );
+
+  return { svg_add, svg_close, svg_drop_down, svg_remove, svg_eye };
 }

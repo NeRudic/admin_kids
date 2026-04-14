@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "./NewFamily.css";
 import useFamilyFields from "./fields/useFamilyFields.js";
-import Svg from "./svg/Svg";
+import Svg from "../svg/Svg";
 import Handlers from "./handlers/Handlers.js";
 import NewAdult from "./newAdult/NewAdult";
 import NewChild from "./newChild/NewChild.jsx";

@@ -1,4 +1,4 @@
-import Svg from "../svg/Svg";
+import Svg from "../../svg/Svg";
 import "./NewChild.css";
 import { NewChildAdultInterface } from "../../../.types";
 

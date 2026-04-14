@@ -1,5 +1,5 @@
 import "./TitleSection.css";
-import Svg from "../svg/Svg";
+import Svg from "../../svg/Svg";
 
 interface TitleSectionInterface {
   title_label: string;
