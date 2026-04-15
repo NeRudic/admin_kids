@@ -1,21 +1,25 @@
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm, SubmitHandler } from "react-hook-form";
 import "./NewFamily.css";
-import useFamilyFields from "./fields/useFamilyFields.js";
+import useFamilyFields from "./Fields/useFamilyFields";
 import Svg from "../svg/Svg";
-import Handlers from "./handlers/Handlers.js";
-import NewAdult from "./newAdult/NewAdult";
-import NewChild from "./newChild/NewChild.jsx";
-import TitleSection from "./titleSection/TitleSection.jsx";
+import NewAdult from "./NewAdult/NewAdult";
+import NewChild from "./NewChild/NewChild.js";
+import TitleSection from "./TitleSection/TitleSection.js";
+import { NewFamilyInterface } from "../../.types";
+import { createFamily } from "../../api/family";
 
-export default function NewFamily({ newClientModalHandler }) {
+interface NewFamilyProps {
+  newClientModalHandler: () => void;
+}
+
+export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors, touchedFields, isSubmitted },
     reset,
-    setError,
-  } = useForm({
+  } = useForm<NewFamilyInterface>({
     defaultValues: {
       familyName: "",
       adults: [],
@@ -25,22 +29,36 @@ export default function NewFamily({ newClientModalHandler }) {
   });
 
   const { svg_close } = Svg();
+
   const { adults, children } = useFamilyFields(control);
-  const { onInvalid, onSubmit } = new Handlers(
-    reset,
-    newClientModalHandler,
-    setError,
-  );
 
   const adults_field_handler = () =>
     adults.append({
-      roleId: "",
+      roleId: null,
       name: "",
       phone: "+380",
     });
 
   const children_field_type = () =>
-    children.append({ roleId: "", name: "", birthDate: "" });
+    children.append({ roleId: null, name: "", birthDate: "" });
+
+  const onSubmit: SubmitHandler<NewFamilyInterface> = async (requestData) => {
+    console.log(requestData);
+
+    try {
+      await createFamily(requestData);
+
+      console.log("Success!");
+      reset();
+      newClientModalHandler();
+    } catch (e) {
+      console.error("Failed:", e);
+    }
+  };
+
+  const onInvalid = (formErrors: FieldErrors<NewFamilyInterface>) => {
+    console.log("Увага!", formErrors);
+  };
 
   return (
     // FormTitle
@@ -84,7 +102,7 @@ export default function NewFamily({ newClientModalHandler }) {
               title_label="Дорослi"
               button_label="Додати дорослого"
               onAdd={adults_field_handler}
-              error_message={errors?.adults?.message}
+              error_message={errors.adults?.root?.message}
             />
 
             <div className="adults_add_wrapper">
@@ -109,7 +127,7 @@ export default function NewFamily({ newClientModalHandler }) {
               title_label="Дiти"
               button_label="Додати дитину"
               onAdd={children_field_type}
-              error_message={errors?.children?.message}
+              error_message={errors?.children?.root?.message}
             />
 
             <div className="children_add_wrapper">

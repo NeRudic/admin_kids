@@ -8,12 +8,12 @@ export interface NewFamilyInterface {
   adults: {
     name: string;
     phone: string;
-    roleId: number;
+    roleId: number | null;
   }[];
   children: {
     name: string;
     birthDate: string;
-    roleId: number;
+    roleId: number | null;
   }[];
 }
 
