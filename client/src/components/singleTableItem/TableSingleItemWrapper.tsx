@@ -1,14 +1,30 @@
 import Svg from "../svg/Svg";
-import { ChildrenInterface } from "../../.types";
+// import { ChildrenInterface } from "../../.types";
+import { moreHandler } from "./setMoreHandler";
+import { ReactNode } from "react";
+
+interface ISTI {
+  mainContent: ReactNode;
+  moreContent: ReactNode;
+}
 
 export default function TableSingleItemWrapper({
-  children,
-}: ChildrenInterface) {
+  mainContent,
+  moreContent,
+}: ISTI) {
   const { svg_eye } = Svg();
+
+  const { setMoreHandler, more } = moreHandler();
+
   return (
-    <div className="single_table_item msh-exl">
-      <div className="eye_svg">{svg_eye()}</div>
-      <div className="table_content">{children}</div>
-    </div>
+    <>
+      <div className="single_table_item msh-exl" onClick={setMoreHandler}>
+        <div className="eye_svg">{svg_eye()}</div>
+        <div className="table_content">{mainContent}</div>
+      </div>
+      <div className={`sti_more ${more ? "visible" : "hidden"}`}>
+        {moreContent}
+      </div>
+    </>
   );
 }
