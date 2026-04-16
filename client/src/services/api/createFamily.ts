@@ -1,5 +1,5 @@
 import { createFamilyUrl } from "./family.api";
-import { NewFamilyInterface } from "../.types";
+import { NewFamilyInterface } from "../../.types";
 import axios from "axios";
 
 export const createFamily = async (requestData: NewFamilyInterface) => {
