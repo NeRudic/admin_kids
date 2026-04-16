@@ -145,7 +145,6 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
                 );
               })}
             </div>
-            {/* Здесь будет похожая форма, как и у взрослого */}
 
             <button
               type="submit"
