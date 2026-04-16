@@ -1,28 +1,24 @@
 import { createFamilyUrl } from "./family.api";
 import { NewFamilyInterface } from "../.types";
+import axios from "axios";
 
 export const createFamily = async (requestData: NewFamilyInterface) => {
   try {
-    const res = await fetch(createFamilyUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestData),
-    });
-
-    if (!res.ok) {
-      const errorMessage = await res.json();
-      throw new Error(errorMessage.message || `Server error: ${res.status}`);
-    }
-
-    const data = await res.json();
-    console.log("Data sent successfully!", data);
-  } catch (err) {
-    if (err instanceof Error) {
-      console.error("Data sent failed! Error:", err.message);
+    const { data } = await axios.post<NewFamilyInterface>(
+      createFamilyUrl,
+      requestData,
+    );
+    console.log(`[Axios]Data sent: `, data);
+  } catch (e) {
+    if (axios.isAxiosError(e)) {
+      if (e?.response) {
+        console.error("[Axios]Status:", e.response.status);
+        console.error("[Axios]Server message:", e.response.data.message);
+      }
+    } else if (e instanceof Error) {
+      console.error("[Error]Data sent failed! Error: ", e.message);
     } else {
-      console.error("An unknown error occurred", err);
+      console.error("[Unknown]Unexpected error!");
     }
   }
 };
