@@ -27,3 +27,30 @@ export interface NewChildAdultInterface {
 export interface ChildrenInterface {
   children: ReactNode;
 }
+
+export interface AdultsDTO {
+  id: number;
+  name: string;
+  phone?: string;
+  roleId: number;
+}
+
+export interface ChildrenDTO {
+  id: number;
+  name: string;
+  birthDate: string;
+  roleId: number;
+}
+
+export interface FamilyDTO {
+  data: {
+    family: {
+      familyName: string;
+      created_at?: string;
+      updated_at?: string;
+
+      adults: AdultsDTO[];
+      children: ChildrenDTO[];
+    }[];
+  };
+}
