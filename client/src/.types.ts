@@ -6,14 +6,16 @@ export type Void = () => void;
 export interface NewFamilyInterface {
   familyName: string;
   adults: {
+    id?: number;
     name: string;
-    phone: string;
-    roleId: number | null;
+    phone?: string | undefined;
+    role: string;
   }[];
   children: {
+    id?: number;
     name: string;
     birthDate: string;
-    roleId: number | null;
+    role: string;
   }[];
 }
 
@@ -31,15 +33,15 @@ export interface ChildrenInterface {
 export interface AdultsDTO {
   id: number;
   name: string;
-  phone?: string;
-  roleId: number;
+  phone?: string | undefined;
+  role: string;
 }
 
 export interface ChildrenDTO {
   id: number;
   name: string;
   birthDate: string;
-  roleId: number;
+  role: string;
 }
 
 export interface FamilyDTO {
