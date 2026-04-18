@@ -1,4 +1,4 @@
-import { createFamilyUrl } from "./family.api";
+import { createFamilyUrl } from "./api";
 import { NewFamilyInterface } from "../../.types";
 import axios from "axios";
 

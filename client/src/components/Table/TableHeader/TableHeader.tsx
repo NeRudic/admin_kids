@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import { ChildrenInterface } from "../../../.types";
 
-interface ITableHeader {
+export interface ITableHeader extends ChildrenInterface {
   button_label?: string;
   placeholder: string;
-  onSearch: (value: string) => void;
+  dataNotifier: (value: string) => void;
 }
 
 export default function TableHeader({
   button_label,
   placeholder,
-  onSearch,
+  dataNotifier,
+  children,
 }: ITableHeader) {
   const [inputValue, setInputValue] = useState("");
   const firstRender = useRef(true);
@@ -24,7 +26,7 @@ export default function TableHeader({
     const timeoutID = setTimeout(() => {
       const data = inputValue.trim();
       if (data.length >= 3 || data.length === 0) {
-        onSearch(data);
+        dataNotifier(data);
       }
     }, 500);
 
@@ -49,7 +51,7 @@ export default function TableHeader({
           {button_label?.trim() && <button>{button_label}</button>}
         </div>
       </div>
-      <div className="title_area"></div>
+      <div className="title_area">{children}</div>
     </div>
   );
 }
