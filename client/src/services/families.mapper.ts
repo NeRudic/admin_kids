@@ -1,22 +1,21 @@
-import TableSingleItem from "../components/Table/SingleTableItem/TableSingleItem";
-import { NewFamilyInterface, FamilyDTO } from "../.types";
+import { NewFamilyInterface, FamiliesDTO } from "../.types";
 
 export default function familiesMapper(
-  response: FamilyDTO,
+  response: FamiliesDTO,
 ): NewFamilyInterface[] {
-  return response.data.family.map((family) => ({
+  return response.data.families.map((family) => ({
     familyName: family.familyName,
     adults: family.adults.map((adult) => ({
       id: adult.id,
       name: adult.name,
-      roleId: adult.roleId,
+      role: adult.role,
       phone: adult.phone || "",
     })),
     children: family.children.map((child) => ({
       id: child.id,
       name: child.name,
       birthDate: child.birthDate,
-      roleId: child.roleId,
+      role: child.role,
     })),
   }));
 }

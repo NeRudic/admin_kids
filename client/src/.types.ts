@@ -44,9 +44,9 @@ export interface ChildrenDTO {
   role: string;
 }
 
-export interface FamilyDTO {
+export interface FamiliesDTO {
   data: {
-    family: {
+    families: {
       familyName: string;
       created_at?: string;
       updated_at?: string;
