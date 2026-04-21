@@ -3,20 +3,25 @@ import { ReactNode } from "react";
 
 export type Void = () => void;
 
+export interface IAdults {
+  id: number;
+  name: string;
+  phone?: string | undefined;
+  role: string;
+}
+
+export interface IChildren {
+  id: number;
+  name: string;
+  birthDate: string;
+  role: string;
+}
+
 export interface NewFamilyInterface {
   familyName: string;
-  adults: {
-    id: number;
-    name: string;
-    phone?: string | undefined;
-    role: string;
-  }[];
-  children: {
-    id: number;
-    name: string;
-    birthDate: string;
-    role: string;
-  }[];
+  adults: IAdults[];
+  children: IChildren[];
+  [key: string]: string | number | IAdults[] | IChildren[] | undefined;
 }
 
 export interface NewChildAdultInterface {
