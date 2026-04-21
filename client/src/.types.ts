@@ -6,13 +6,13 @@ export type Void = () => void;
 export interface NewFamilyInterface {
   familyName: string;
   adults: {
-    id?: number;
+    id: number;
     name: string;
     phone?: string | undefined;
     role: string;
   }[];
   children: {
-    id?: number;
+    id: number;
     name: string;
     birthDate: string;
     role: string;
