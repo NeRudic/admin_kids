@@ -10,7 +10,7 @@ export default function NewChild({
 }: NewChildAdultInterface) {
   const { svg_remove, svg_drop_down } = Svg();
   const nameError = errors?.children?.[index]?.name?.message;
-  const childrenRoleError = errors?.children?.[index]?.roleId?.message;
+  const childrenRoleError = errors?.children?.[index]?.role?.message;
   const childrenDateError = errors?.children?.[index]?.birthDate?.message;
 
   const requireMessage = `Це поле обов'язково!`;

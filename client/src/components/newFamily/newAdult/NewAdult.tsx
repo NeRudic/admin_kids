@@ -12,7 +12,7 @@ export default function NewAdult({
 
   const nameError = errors?.adults?.[index]?.name?.message;
   const phoneError = errors?.adults?.[index]?.phone?.message;
-  const adultRoleError = errors?.adults?.[index]?.roleId?.message;
+  const adultRoleError = errors?.adults?.[index]?.role?.message;
 
   return (
     <div className="nf_adult mt-bd">
