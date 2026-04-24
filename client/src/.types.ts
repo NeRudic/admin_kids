@@ -3,18 +3,31 @@ import { ReactNode } from "react";
 
 export type Void = () => void;
 
-export interface IAdults {
+// Groupper
+
+export interface IGroupper {
   id: number;
   name: string;
-  phone?: string | undefined;
   role: string;
+  [key: string]: number | string | undefined | {};
 }
 
-export interface IChildren {
-  id: number;
-  name: string;
+export interface IGrouppedFamily {
+  familyName: string;
+  adults: Record<string, IGroupper[]>;
+  children: {
+    [key: string]: IGroupper[];
+  };
+}
+
+// Family
+
+export interface IAdults extends IGroupper {
+  phone?: string | undefined;
+}
+
+export interface IChildren extends IGroupper {
   birthDate: string;
-  role: string;
 }
 
 export interface NewFamilyInterface {
@@ -31,9 +44,13 @@ export interface NewChildAdultInterface {
   errors: FieldErrors<NewFamilyInterface>;
 }
 
+// React Children
+
 export interface ChildrenInterface {
   children: ReactNode;
 }
+
+// DTO
 
 export interface AdultsDTO {
   id: number;
