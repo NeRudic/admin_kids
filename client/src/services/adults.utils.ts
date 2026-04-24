@@ -1,11 +1,5 @@
 import { NewFamilyInterface } from "../.types";
-
-interface IGroupper {
-  id: number;
-  name: string;
-  role: string;
-  [key: string]: number | string | undefined | {};
-}
+import { IGroupper, IGrouppedFamily } from "../.types";
 
 const groupper = (personArr: IGroupper[]): Record<string, IGroupper[]> =>
   personArr.reduce<Record<string, IGroupper[]>>((acc, person) => {
@@ -15,12 +9,14 @@ const groupper = (personArr: IGroupper[]): Record<string, IGroupper[]> =>
     };
   }, {});
 
-// export const groupByRole = (mappedData: NewFamilyInterface[]) => {
-//   return mappedData.reduce((acc, family) => {
-//     const droupped = groupper(family);
-//     return {
-//       ...acc,
-//       ...groupped,
-//     };
-//   }, {});
-// };
+export const groupByRole = (
+  mappedData: NewFamilyInterface[],
+): IGrouppedFamily[] => {
+  return mappedData.map((val) => {
+    return {
+      familyName: val.familyName,
+      adults: groupper(val.adults),
+      children: groupper(val.children),
+    };
+  });
+};
