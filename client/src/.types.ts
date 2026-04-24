@@ -34,7 +34,7 @@ export interface NewFamilyInterface {
   familyName: string;
   adults: IAdults[];
   children: IChildren[];
-  [key: string]: string | number | IAdults[] | IChildren[] | undefined;
+  [key: string]: string | number | IAdults[] | IChildren[] | undefined | null;
 }
 
 export interface NewChildAdultInterface {
