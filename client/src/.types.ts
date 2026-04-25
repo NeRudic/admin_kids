@@ -1,23 +1,19 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { ReactNode } from "react";
-
-export type Void = () => void;
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 // Groupper
 
 export interface IGroupper {
-  id: number;
+  id?: number;
   name: string;
-  role: string;
-  [key: string]: number | string | undefined | {};
+  role: string | null;
+  [key: string]: number | string | undefined | {} | null;
 }
 
 export interface IGrouppedFamily {
   familyName: string;
   adults: Record<string, IGroupper[]>;
-  children: {
-    [key: string]: IGroupper[];
-  };
+  children: Record<string, IGroupper[]>;
 }
 
 // Family
@@ -34,8 +30,10 @@ export interface NewFamilyInterface {
   familyName: string;
   adults: IAdults[];
   children: IChildren[];
-  [key: string]: string | number | IAdults[] | IChildren[] | undefined | null;
+  [key: string]: string | number | IAdults[] | IChildren[] | undefined;
 }
+
+// React Hook Form Fields
 
 export interface NewChildAdultInterface {
   index: number;
@@ -50,21 +48,11 @@ export interface ChildrenInterface {
   children: ReactNode;
 }
 
+// Void
+
+export type Void = () => void;
+
 // DTO
-
-export interface AdultsDTO {
-  id: number;
-  name: string;
-  phone?: string | undefined;
-  role: string;
-}
-
-export interface ChildrenDTO {
-  id: number;
-  name: string;
-  birthDate: string;
-  role: string;
-}
 
 export interface FamiliesDTO {
   data: {
@@ -73,8 +61,20 @@ export interface FamiliesDTO {
       created_at?: string;
       updated_at?: string;
 
-      adults: AdultsDTO[];
-      children: ChildrenDTO[];
+      adults: IAdults[];
+      children: IChildren[];
     }[];
+  };
+}
+
+// Table Header
+
+export interface ITableHeader extends ChildrenInterface {
+  button_label?: string;
+  placeholder: string;
+  dataNotifier: (value: string) => void;
+  state: {
+    inputValue: string;
+    setInputValue: (value: string) => void;
   };
 }
