@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import { useNewClientModal } from "./context/NewClientModalContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NewFamily from "./components/NewFamily/NewFamily";
+import Families from "./pages/Families";
 
 export default function App() {
   const { isOpen, newClientModalHandler } = useNewClientModal();
@@ -23,10 +24,9 @@ export default function App() {
 
         <div className="wrapper max-w-[1200px]">
           <Routes>
-            {/*
-        <Route path="/families" element={<Families/>}>
-        <Route path="/visits" element={<Visits/>}>
-        <Route path="/story" element={<Story>}> */}
+            <Route path="/families" element={<Families />} />
+            {/*<Route path="/visits" element={<Visits/> /}>
+            <Route path="/story" element={<Story>} /> */}
           </Routes>
         </div>
       </Router>
