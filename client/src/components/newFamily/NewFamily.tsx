@@ -1,6 +1,6 @@
 import { FieldErrors, useForm, SubmitHandler } from "react-hook-form";
 import "./NewFamily.css";
-import useFamilyFields from "./Fields/useFamilyFields";
+import useFamilyFields from "../../hooks/useFamilyFields";
 import Svg from "../svg/Svg";
 import NewAdult from "./NewAdult/NewAdult";
 import NewChild from "./NewChild/NewChild.js";
@@ -34,13 +34,13 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
 
   const adults_field_handler = () =>
     adults.append({
-      roleId: null,
+      role: null,
       name: "",
       phone: "+380",
     });
 
   const children_field_type = () =>
-    children.append({ roleId: null, name: "", birthDate: "" });
+    children.append({ role: null, name: "", birthDate: "" });
 
   const onSubmit: SubmitHandler<NewFamilyInterface> = async (requestData) => {
     console.log(requestData);
