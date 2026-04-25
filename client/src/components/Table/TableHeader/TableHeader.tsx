@@ -1,19 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { ChildrenInterface } from "../../../.types";
-
-export interface ITableHeader extends ChildrenInterface {
-  button_label?: string;
-  placeholder: string;
-  dataNotifier: (value: string) => void;
-}
+import { useEffect, useRef } from "react";
+import { ITableHeader } from "../../../.types";
 
 export default function TableHeader({
   button_label,
   placeholder,
+  state,
   dataNotifier,
   children,
 }: ITableHeader) {
-  const [inputValue, setInputValue] = useState("");
   const firstRender = useRef(true);
 
   // Track the first render
@@ -22,19 +16,20 @@ export default function TableHeader({
       firstRender.current = false;
       return;
     }
+
     // Fetch debounce
     const timeoutID = setTimeout(() => {
-      const data = inputValue.trim();
+      const data = state.inputValue.trim();
       if (data.length >= 3 || data.length === 0) {
         dataNotifier(data);
       }
     }, 500);
 
     return () => clearTimeout(timeoutID);
-  }, [inputValue]);
+  }, [state.inputValue]);
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
+    state.setInputValue(e.target.value);
   }
 
   return (
@@ -45,7 +40,7 @@ export default function TableHeader({
             type="text"
             placeholder={placeholder}
             onChange={onChangeHandler}
-            value={inputValue}
+            value={state.inputValue}
           />
           <div className="results"></div>
           {button_label?.trim() && <button>{button_label}</button>}
