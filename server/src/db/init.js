@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS family (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS adult_roles (
+CREATE TABLE IF NOT EXISTS adults_roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   key TEXT UNIQUE,
   label TEXT
@@ -20,24 +20,24 @@ CREATE TABLE IF NOT EXISTS children_roles (
   label TEXT
 );
 
-CREATE TABLE IF NOT EXISTS adult (
+CREATE TABLE IF NOT EXISTS adults (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name TEXT NOT NULL,
   family_id INTEGER NOT NULL,
   role_id INTEGER NOT NULL,
 
   CONSTRAINT family_id_fk FOREIGN KEY (family_id) REFERENCES family(id) ON DELETE CASCADE,
-  CONSTRAINT adult_role_id_fk FOREIGN KEY (role_id) REFERENCES adult_roles(id) ON DELETE RESTRICT
+  CONSTRAINT adults_role_id_fk FOREIGN KEY (role_id) REFERENCES adults_roles(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS phone (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   phone_number TEXT NOT NULL,
   family_id INTEGER NOT NULL,
-  adult_id INTEGER,
+  adults_id INTEGER,
 
   CONSTRAINT family_id_fk_to_phone FOREIGN KEY (family_id) REFERENCES family(id) ON DELETE CASCADE,
-  CONSTRAINT adult_id_fk FOREIGN KEY (adult_id) REFERENCES adult(id) ON DELETE CASCADE
+  CONSTRAINT adults_id_fk FOREIGN KEY (adults_id) REFERENCES adults(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS children (
@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS children (
 
 CREATE TABLE IF NOT EXISTS visit (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  brought_by_adult_id INTEGER NOT NULL,
+  brought_by_adults_id INTEGER NOT NULL,
   start_time TEXT NOT NULL,
   end_time TEXT,
 
-  CONSTRAINT adult_id_fk_visit FOREIGN KEY (brought_by_adult_id) REFERENCES adult(id) ON DELETE CASCADE
+  CONSTRAINT adults_id_fk_visit FOREIGN KEY (brought_by_adults_id) REFERENCES adults(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS children_visit (
@@ -71,17 +71,17 @@ CREATE TABLE IF NOT EXISTS children_visit (
 
 CREATE INDEX IF NOT EXISTS idx_family_name ON family(family_name);
 
-CREATE INDEX IF NOT EXISTS idx_adult_family_id ON adult(family_id);
-CREATE INDEX IF NOT EXISTS idx_adult_first_name ON adult(first_name);
+CREATE INDEX IF NOT EXISTS idx_adults_family_id ON adults(family_id);
+CREATE INDEX IF NOT EXISTS idx_adults_first_name ON adults(first_name);
 
 CREATE INDEX IF NOT EXISTS idx_phone_family_id ON phone(family_id);
-CREATE INDEX IF NOT EXISTS idx_phone_adult_id ON phone(adult_id);
+CREATE INDEX IF NOT EXISTS idx_phone_adults_id ON phone(adults_id);
 
 CREATE INDEX IF NOT EXISTS idx_children_visit_children ON children_visit(children_id);
 
 CREATE INDEX IF NOT EXISTS idx_children_first_name ON children(child_name);
 
-INSERT OR IGNORE INTO adult_roles (key, label) VALUES
+INSERT OR IGNORE INTO adults_roles (key, label) VALUES
 
 ('mother', 'Мама'),
 ('father', 'Тато'),
