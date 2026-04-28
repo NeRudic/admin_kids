@@ -10,13 +10,11 @@ CREATE TABLE IF NOT EXISTS family (
 
 CREATE TABLE IF NOT EXISTS adults_roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  key TEXT UNIQUE,
-  label TEXT
+  label TEXT UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS children_roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  key TEXT UNIQUE,
   label TEXT
 );
 
@@ -81,17 +79,17 @@ CREATE INDEX IF NOT EXISTS idx_children_visit_children ON children_visit(childre
 
 CREATE INDEX IF NOT EXISTS idx_children_first_name ON children(child_name);
 
-INSERT OR IGNORE INTO adults_roles (key, label) VALUES
+INSERT OR IGNORE INTO adults_roles (label) VALUES
 
-('mother', 'Мама'),
-('father', 'Тато'),
-('grandmother', 'Бабуся'),
-('grandfather', 'Дiдусь');
+('mother'),
+('father'),
+('grandmother'),
+('grandfather');
 
-INSERT OR IGNORE INTO children_roles (key, label) VALUES
+INSERT OR IGNORE INTO children_roles (label) VALUES
 
-('son', 'Син'),
-('daughter', 'Донька');
+('son'),
+('daughter');
 
 `;
 
