@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 
 # SQLite
 src/db/*.sqlite
+
+# Extentions
+server/api.http
