@@ -28,6 +28,7 @@ export interface IChildren extends IGroupper {
 
 export interface NewFamilyInterface {
   familyName: string;
+  family_id?: number;
   adults: IAdults[];
   children: IChildren[];
   [key: string]: string | number | IAdults[] | IChildren[] | undefined;
