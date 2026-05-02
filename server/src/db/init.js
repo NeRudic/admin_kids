@@ -10,12 +10,12 @@ CREATE TABLE IF NOT EXISTS family (
 
 CREATE TABLE IF NOT EXISTS adult_role (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  label TEXT UNIQUE
+  role TEXT UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS child_role (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  label TEXT
+  role TEXT UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS adult (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS phone (
 
 CREATE TABLE IF NOT EXISTS child (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
+  first_name TEXT NOT NULL,
   birthday TEXT NOT NULL,
   role_id INTEGER NOT NULL,
   family_id INTEGER NOT NULL,
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS visit (
   brought_by_adult_id INTEGER NOT NULL,
   start_time TEXT NOT NULL,
   end_time TEXT,
+  price_per_hour INTEGER NOT NULL,
 
   CONSTRAINT adult_id_fk_visit FOREIGN KEY (brought_by_adult_id) REFERENCES adult(id) ON DELETE CASCADE
 );
@@ -67,6 +68,11 @@ CREATE TABLE IF NOT EXISTS child_visit (
   CONSTRAINT visit_id_child_visit FOREIGN KEY (visit_id) REFERENCES visit(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS pricing (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  current_price_per_hour INTEGER NOT NULL 
+);
+
 CREATE INDEX IF NOT EXISTS idx_family_name ON family(family_name);
 
 CREATE INDEX IF NOT EXISTS idx_adult_family_id ON adult(family_id);
@@ -77,19 +83,21 @@ CREATE INDEX IF NOT EXISTS idx_phone_adult_id ON phone(adult_id);
 
 CREATE INDEX IF NOT EXISTS idx_child_visit_child ON child_visit(child_id);
 
-CREATE INDEX IF NOT EXISTS idx_child_first_name ON child(name);
+CREATE INDEX IF NOT EXISTS idx_child_first_name ON child(first_name);
 
-INSERT OR IGNORE INTO adult_role (label) VALUES
+INSERT OR IGNORE INTO adult_role (role) VALUES
 
 ('mother'),
 ('father'),
 ('grandmother'),
 ('grandfather');
 
-INSERT OR IGNORE INTO child_role (label) VALUES
+INSERT OR IGNORE INTO child_role (role) VALUES
 
 ('son'),
-('daughter');
+('daughter'),
+('granddaughter'),
+('grandson');
 
 `;
 
