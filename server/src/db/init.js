@@ -3,7 +3,7 @@ import { db } from "../../app.js";
 export const sql = `
 CREATE TABLE IF NOT EXISTS family (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_name TEXT NOT NULL,
+  family_name TEXT NOT NULL UNIQUE,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
