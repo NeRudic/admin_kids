@@ -28,11 +28,10 @@
 /* header */
 
 header {
-  position: fixed;
+  display: block;
   height: var(--header-height);
   width: 100%;
   background: var(--background);
-  z-index: 3;
 }
 
 .header_wrapper {
