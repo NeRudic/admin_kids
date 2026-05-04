@@ -36,7 +36,7 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
     adults.append({
       role: null,
       first_name: "",
-      phone: "+380",
+      phone_number: "+380",
     });
 
   const children_field_type = () =>
