@@ -32,7 +32,7 @@ export default function NewChild({
               value: /^\d{2}\.\d{2}\.\d{4}$/,
               message: "Формат дати має бути DD.MM.YYYY",
             },
-            validate: (value) => {
+            validate: (value: string) => {
               if (typeof value !== "string") {
                 return "Некоректна дата";
               }
