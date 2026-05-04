@@ -1,6 +1,7 @@
 import Svg from "../../svg/Svg";
 import { moreHandler } from "./setMoreHandler";
 import { ReactNode } from "react";
+import "./TableSingleItem.css";
 
 interface ISTI {
   mainContent: ReactNode;
