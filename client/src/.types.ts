@@ -1,5 +1,5 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { ReactNode } from "react";
 
 // Groupper
 
@@ -7,27 +7,29 @@ export interface IGroupper {
   id?: number;
   first_name: string;
   role: string | null;
-  [key: string]: number | string | undefined | {} | null;
+  // [key: string]: number | string | undefined | {} | null;
 }
 
 export interface IGrouppedFamily {
-  familyName: string;
-  adults: Record<string, IGroupper[]>;
-  children: Record<string, IGroupper[]>;
+  family_name: string;
+  family_id: number;
+  adults: IAdults[];
+  children: IChildren[];
 }
 
 // Family
 
 export interface IAdults extends IGroupper {
-  phone?: string | undefined;
+  phone_number?: string | undefined;
 }
 
 export interface IChildren extends IGroupper {
   birthday: string;
 }
 
+// Delete this interface in future!
 export interface NewFamilyInterface {
-  familyName: string;
+  family_name: string;
   family_id?: number;
   adults: IAdults[];
   children: IChildren[];
@@ -52,21 +54,6 @@ export interface ChildrenInterface {
 // Void
 
 export type Void = () => void;
-
-// DTO
-
-export interface FamiliesDTO {
-  data: {
-    families: {
-      familyName: string;
-      created_at?: string;
-      updated_at?: string;
-
-      adults: IAdults[];
-      children: IChildren[];
-    }[];
-  };
-}
 
 // Table Header
 
