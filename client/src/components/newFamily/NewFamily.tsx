@@ -35,12 +35,12 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
   const adults_field_handler = () =>
     adults.append({
       role: null,
-      name: "",
+      first_name: "",
       phone: "+380",
     });
 
   const children_field_type = () =>
-    children.append({ role: null, name: "", birthDate: "" });
+    children.append({ role: null, first_name: "", birthday: "" });
 
   const onSubmit: SubmitHandler<NewFamilyInterface> = async (requestData) => {
     console.log(requestData);

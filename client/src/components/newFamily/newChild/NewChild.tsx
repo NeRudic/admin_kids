@@ -9,9 +9,9 @@ export default function NewChild({
   errors,
 }: NewChildAdultInterface) {
   const { svg_remove, svg_drop_down } = Svg();
-  const nameError = errors?.children?.[index]?.name?.message;
+  const nameError = errors?.children?.[index]?.first_name?.message;
   const childrenRoleError = errors?.children?.[index]?.role?.message;
-  const childrenDateError = errors?.children?.[index]?.birthDate?.message;
+  const childrenDateError = errors?.children?.[index]?.birthday?.message;
 
   const requireMessage = `Це поле обов'язково!`;
 
@@ -33,6 +33,9 @@ export default function NewChild({
               message: "Формат дати має бути DD.MM.YYYY",
             },
             validate: (value) => {
+              if (typeof value !== "string") {
+                return "Некоректна дата";
+              }
               const [day, month, year] = value.split(".").map(Number);
               // Правильный порядок: year, month - 1, day
               const date = new Date(year, month - 1, day);

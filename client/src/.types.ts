@@ -5,7 +5,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface IGroupper {
   id?: number;
-  name: string;
+  first_name: string;
   role: string | null;
   [key: string]: number | string | undefined | {} | null;
 }
@@ -23,7 +23,7 @@ export interface IAdults extends IGroupper {
 }
 
 export interface IChildren extends IGroupper {
-  birthDate: string;
+  birthday: string;
 }
 
 export interface NewFamilyInterface {

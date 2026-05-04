@@ -10,7 +10,7 @@ export default function NewAdult({
 }: NewChildAdultInterface) {
   const { svg_drop_down, svg_remove } = Svg();
 
-  const nameError = errors?.adults?.[index]?.name?.message;
+  const nameError = errors?.adults?.[index]?.first_name?.message;
   const phoneError = errors?.adults?.[index]?.phone?.message;
   const adultRoleError = errors?.adults?.[index]?.role?.message;
 

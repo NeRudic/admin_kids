@@ -5,16 +5,22 @@ import { familyDataPreparer } from "../services/families.data.utils";
 
 export default function Families() {
   const [inputValue, setInputValue] = useState("");
-  const [renderData, setRenderData] = useState<IGrouppedFamily[]>();
+  const [renderData, setRenderData] = useState<IGrouppedFamily[]>([]);
 
   const dataNotifier = async (inputValue: string) => {
     const preparedData = await familyDataPreparer(inputValue);
-    setRenderData(preparedData);
+    preparedData
+      ? setRenderData(preparedData)
+      : console.log("Error: preparedData is undefined");
   };
 
   useEffect(() => {
     dataNotifier("");
   }, []);
+
+  function render() {
+    return <p>Hi!</p>;
+  }
 
   const state = { inputValue: inputValue, setInputValue: setInputValue };
   return (
@@ -27,7 +33,9 @@ export default function Families() {
         <h5>Сім'я</h5>
         <h5>Останнiй вiзит</h5>
       </TableHeader>
-      <div className="families_content"></div>
+      <div className="families_content">
+        {renderData.length !== 0 && render()}
+      </div>
     </>
   );
 }
