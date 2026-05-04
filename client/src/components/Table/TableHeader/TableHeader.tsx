@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ITableHeader } from "../../../.types";
+import "./TableHeader.css";
 
 export default function TableHeader({
   button_label,
