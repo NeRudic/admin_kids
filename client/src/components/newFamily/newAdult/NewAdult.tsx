@@ -11,7 +11,7 @@ export default function NewAdult({
   const { svg_drop_down, svg_remove } = Svg();
 
   const nameError = errors?.adults?.[index]?.first_name?.message;
-  const phoneError = errors?.adults?.[index]?.phone?.message;
+  const phoneError = errors?.adults?.[index]?.phone_number?.message;
   const adultRoleError = errors?.adults?.[index]?.role?.message;
 
   return (
