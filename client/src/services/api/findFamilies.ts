@@ -1,19 +1,25 @@
 import axios from "axios";
 import { findFamiliesUrl } from "./api";
 import { apiError } from "./api.error";
-import { FamiliesDTO } from "../../.types";
+import { IGrouppedFamily } from "../../.types";
+
+interface IDataFamilies {
+  message: IGrouppedFamily[];
+}
 
 export const findFamilies = async (query: string) => {
   const params = {
     query: query,
   };
   try {
-    const { data } = await axios.get<FamiliesDTO>(findFamiliesUrl, {
+    const {
+      data: { message },
+    } = await axios.get<IDataFamilies>(findFamiliesUrl, {
       params,
     });
-    console.log(`[Axios]Data get: `, data);
+    console.log(`[Axios]Data get: `, message);
 
-    return data;
+    return message;
   } catch (e) {
     apiError(e);
   }
