@@ -3,7 +3,7 @@ import { db } from "../../app.js";
 export const sql = `
 CREATE TABLE IF NOT EXISTS family (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_name TEXT NOT NULL UNIQUE,
+  family_name TEXT NOT NULL UNIQUE COLLATE NOCASE,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -87,17 +87,17 @@ CREATE INDEX IF NOT EXISTS idx_child_first_name ON child(first_name);
 
 INSERT OR IGNORE INTO adult_role (role) VALUES
 
-('mother'),
-('father'),
-('grandmother'),
-('grandfather');
+('Мати'),
+('Батько'),
+('Дідусь'),
+('Бабуся');
 
 INSERT OR IGNORE INTO child_role (role) VALUES
 
-('son'),
-('daughter'),
-('granddaughter'),
-('grandson');
+('Син'),
+('Донька'),
+('Онук'),
+('Онучка');
 
 `;
 
