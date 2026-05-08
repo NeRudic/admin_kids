@@ -22,7 +22,6 @@
   /* Header */
   --logo-color: #fff;
   --menu-list-color: #fff;
-  --active-tab-color: #1cf08f;
 }
 
 /* header */
@@ -132,17 +131,6 @@ header {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-
-/* .new_family::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-
-  width: var(--drop-down-width);
-  height: 12px;
-  transform: translate(50%, 50%);
-} */
 
 /* showing dropdown */
 
