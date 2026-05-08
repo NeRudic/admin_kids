@@ -1,0 +1,79 @@
+.table_single_item {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+  padding: 0 16px;
+
+  font-size: 18px;
+
+  background: rgba(80, 117, 229, 0.5);
+  color: var(--white);
+
+  border-radius: 15px;
+
+  transition: border-radius 0.5s ease-out;
+}
+
+.table_single_item.tsi_active {
+  border-radius: 15px 15px 0 0;
+}
+
+.eye_svg svg {
+  width: 20px;
+  aspect-ratio: 1/1;
+  color: #000;
+}
+
+.tsi_more {
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.44);
+
+  font-size: 20px;
+
+  transition: all 0.5s ease-out;
+
+  border-radius: 0 0 15px 15px;
+}
+
+.tsi_more.hidden {
+  grid-template-rows: 0fr;
+  padding: 0 62px 0;
+}
+
+.tsi_more.visible {
+  visibility: visible;
+  grid-template-rows: 1fr;
+  padding: 24px 62px 20px;
+}
+
+.tsi_more_wrapper {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 6px;
+}
+
+.tsi_more_buttons_wrapper {
+  display: grid;
+  grid-column: 3 / 4;
+
+  gap: 6px;
+
+  justify-self: end;
+
+  margin-top: 15px;
+}
+
+.tsi_more_button {
+  width: 144px;
+  height: 30px;
+
+  border-radius: 15px;
+
+  font-size: 19px;
+  color: var(--white);
+}
