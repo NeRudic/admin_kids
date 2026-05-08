@@ -82,5 +82,19 @@ export default function Svg() {
     </svg>
   );
 
-  return { svg_add, svg_close, svg_drop_down, svg_remove, svg_eye };
+  const search = (): React.JSX.Element => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 28 28"
+      width="28"
+      height="28"
+    >
+      <path
+        d="M18.08 16.33h-.92l-.33-.31a7.6 7.6 0 1 0-.83.82l.31.33v.92L22.17 23.9l1.74-1.74-5.83-5.83ZM11.08 16.33a5.25 5.25 0 1 1 0-10.5 5.25 5.25 0 0 1 0 10.5Z"
+        fill="#444"
+      />
+    </svg>
+  );
+
+  return { svg_add, svg_close, svg_drop_down, svg_remove, svg_eye, search };
 }
