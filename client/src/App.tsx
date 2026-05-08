@@ -20,9 +20,7 @@ export default function App() {
           >
             <NewFamily newClientModalHandler={newClientModalHandler} />
           </div>
-        </div>
 
-        <div className="wrapper max-w-[1200px]">
           <Routes>
             <Route path="/families" element={<Families />} />
             {/*<Route path="/visits" element={<Visits/> /}>
