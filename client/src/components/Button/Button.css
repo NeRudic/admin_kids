@@ -1,0 +1,21 @@
+button {
+  cursor: pointer;
+
+  transition: color 0.2s ease-in-out;
+}
+
+button:hover {
+  color: var(--menu-list-color);
+}
+
+.submit {
+  background-color: var(--active-tab-color);
+}
+
+.edit {
+  background-color: #f0931c;
+}
+
+.delete {
+  background-color: #f01c1c;
+}
