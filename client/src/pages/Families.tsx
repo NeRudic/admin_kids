@@ -1,8 +1,10 @@
 import TableHeader from "../components/Table/TableHeader/TableHeader";
+import TableBackground from "../components/Table/TableBackground/TableBackground";
 import { useEffect, useState } from "react";
 import { IGrouppedFamily } from "../.types";
 import { findFamilies } from "../services/api/findFamilies";
 import TableSingleItem from "../components/Table/TableSingleItem/TableSingleItem";
+import "./Families.css";
 
 export default function Families() {
   const [inputValue, setInputValue] = useState("");
@@ -27,22 +29,26 @@ export default function Families() {
           moreContent={[
             ...family.adults.map((adult) => {
               return (
-                <div className="adult" key={`adult-${adult.id}`}>
-                  <div className="role">{adult.role}</div>
-                  <div className="name">{adult.first_name}</div>
+                <div className="adult tsi_item" key={`adult-${adult.id}`}>
+                  <div className="role text-left">{`${adult.role}:`}</div>
+                  <div className="name text-left">{adult.first_name}</div>
                   {adult.phone_number && (
-                    <div className="phone_number">{adult.phone_number}</div>
+                    <div className="phone_number text-right">
+                      {adult.phone_number}
+                    </div>
                   )}
                 </div>
               );
             }),
             ...family.children.map((child) => {
               return (
-                <div className="child" key={`child-${child.id}`}>
-                  <div className="role">{child.role}</div>
-                  <div className="name">{child.first_name}</div>
+                <div className="child tsi_item" key={`child-${child.id}`}>
+                  <div className="role text-left">{`${child.role}:`}</div>
+                  <div className="name text-left">{child.first_name}</div>
                   {child.birthday && (
-                    <div className="phone_number">{child.birthday}</div>
+                    <div className="child_birthday text-center">
+                      {child.birthday}
+                    </div>
                   )}
                 </div>
               );
@@ -61,13 +67,18 @@ export default function Families() {
         placeholder="Введiть сiм'ю"
         state={state}
         dataNotifier={dataNotifier}
+        button_label="Знайти"
       >
         <h5>Сім'я</h5>
         <h5>Останнiй вiзит</h5>
       </TableHeader>
-      <div className="families_content">
-        {renderData.length !== 0 && render(renderData)}
-      </div>
+      {renderData.length !== 0 && (
+        <div className="families_content">
+          <TableBackground>
+            {renderData.length !== 0 && render(renderData)}
+          </TableBackground>
+        </div>
+      )}
     </>
   );
 }
