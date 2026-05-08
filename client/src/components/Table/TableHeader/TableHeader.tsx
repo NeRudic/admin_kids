@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ITableHeader } from "../../../.types";
+import Svg from "../../svg/Svg";
 import "./TableHeader.css";
 
 export default function TableHeader({
@@ -10,6 +11,7 @@ export default function TableHeader({
   children,
 }: ITableHeader) {
   const firstRender = useRef(true);
+  const { search } = Svg();
 
   // Track the first render
   useEffect(() => {
@@ -43,11 +45,13 @@ export default function TableHeader({
             onChange={onChangeHandler}
             value={state.inputValue}
           />
-          <div className="results"></div>
-          {button_label?.trim() && <button>{button_label}</button>}
+          <div className="svg_search">{search()}</div>
         </div>
+        {button_label?.trim() && (
+          <button className="th_button mt-bd">{button_label}</button>
+        )}
       </div>
-      <div className="title_area">{children}</div>
+      <div className="title_area mt-bd">{children}</div>
     </div>
   );
 }

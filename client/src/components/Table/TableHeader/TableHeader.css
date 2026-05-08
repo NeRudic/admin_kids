@@ -1,1 +1,83 @@
+.table_header {
+  width: 950px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+
+  line-height: 1;
+
+  border-radius: 15px;
+  background-color: var(--secondary);
+  padding: 15px 36px;
+}
+
+.search_area {
+  position: relative;
+
+  height: 40px;
+  width: 100%;
+
+  display: flex;
+  gap: 33px;
+
+  margin: 0 auto;
+}
+
+.input_wrapper {
+  height: 100%;
+  flex: 1 1 690px;
+}
+
+.input_wrapper input[type="text"] {
+  height: 100%;
+  border-radius: 15px;
+  font-family: "Mulish";
+  font-weight: 200;
+  font-size: 20px;
+  width: 100%;
+
+  padding-left: 50px;
+  padding-right: 20px;
+
+  box-sizing: border-box;
+}
+
+.input_wrapper input::placeholder {
+  font-weight: 200;
+  font-size: 19px;
+}
+
+.svg_search {
+  width: 28px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+}
+
+.th_button {
+  width: 156px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--active-tab-color);
+  border-radius: 15px;
+
+  font-size: 19px;
+  color: var(--white);
+}
+
+.title_area {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 35px;
+
+  font-size: 17px;
+  color: var(--white);
+}
