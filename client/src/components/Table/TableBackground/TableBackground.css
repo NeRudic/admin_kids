@@ -1,0 +1,9 @@
+.table_background {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 10px 0;
+  background-color: rgba(80, 117, 229, 0.42);
+  border-radius: 0 0 15px 15px;
+}
