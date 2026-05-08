@@ -1,0 +1,27 @@
+.families_content {
+  width: 920px;
+  margin: 0 auto 116px;
+}
+
+.tsi_item {
+  width: 100%;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+
+  color: var(--menu-list-color);
+}
+
+/* Uncomment this styles if you don't use tailwind */
+
+/* .text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+} */
