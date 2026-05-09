@@ -51,6 +51,7 @@ export async function createFamilyService({ familyName, adults, children }) {
 
 export async function findFamilyService({ query }) {
   try {
+    // Find adults
     const adultsFindResult = await db.all(
       `SELECT a.first_name, a.id, f.family_name, f.id AS family_id, p.phone_number, ar.role
       FROM adult AS a
@@ -63,6 +64,7 @@ export async function findFamilyService({ query }) {
 
     console.log(adultsFindResult);
 
+    // Find children
     const childrenFindResult = await db.all(
       `SELECT c.first_name, c.birthday, c.id, f.family_name, f.id AS family_id, cr.role
       FROM child AS c
@@ -74,6 +76,26 @@ export async function findFamilyService({ query }) {
 
     console.log(childrenFindResult);
 
+    // Prepare data for find last visits
+    const familyIds = new Set(adultsFindResult.map((el) => el.family_id));
+    const familyIdsArr = Array.from(familyIds);
+    const placeholder = familyIdsArr.map(() => "?").join(",");
+
+    // Find last visits
+    const lastVisitResult = await db.all(
+      `
+      SELECT MAX(v.end_time) AS last_visit, a.family_id
+      FROM visit AS v
+      JOIN adult AS a ON a.id = v.brought_by_adult_id
+      JOIN family AS f ON f.id = a.family_id
+      WHERE f.id IN (${placeholder})
+      GROUP BY f.id
+      `,
+      familyIdsArr,
+    );
+
+    console.log(lastVisitResult);
+
     const adults = adultsFindResult.map((a) => ({
       ...a,
       type: "adults",
@@ -84,7 +106,15 @@ export async function findFamilyService({ query }) {
       type: "children",
     }));
 
-    return groupper([...adults, ...children]);
+    const lastVisitsMap = new Map();
+
+    lastVisitResult.forEach((el) => {
+      lastVisitsMap.set(el.family_id, el.last_visit);
+    });
+
+    return groupper([...adults, ...children]).map((el) => {
+      return { ...el, last_visit: lastVisitsMap.get(el.family_id) };
+    });
   } catch (err) {
     throw err;
   }
