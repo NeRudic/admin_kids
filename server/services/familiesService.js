@@ -62,6 +62,10 @@ export async function findFamilyService({ query }) {
       [`${query}%`],
     );
 
+    if (adultsFindResult.length === 0) {
+      return [];
+    }
+
     console.log(adultsFindResult);
 
     // Find children
