@@ -22,11 +22,12 @@ export default function TableHeader({
 
     // Fetch debounce
     const timeoutID = setTimeout(() => {
-      const data = state.inputValue.trim();
-      if (data.length >= 3 || data.length === 0) {
+      if (state.inputValue.length > 0) {
+        const data = state.inputValue.trim();
+
         dataNotifier(data);
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timeoutID);
   }, [state.inputValue]);
