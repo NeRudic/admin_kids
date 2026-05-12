@@ -6,7 +6,7 @@ import NewAdult from "./NewAdult/NewAdult";
 import NewChild from "./NewChild/NewChild.js";
 import TitleSection from "./TitleSection/TitleSection.js";
 import { NewFamilyInterface } from "../../.types";
-import { createFamily } from "../../services/api/createFamily";
+import { createFamily } from "../../services/createFamily";
 
 interface NewFamilyProps {
   newClientModalHandler: () => void;

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { findFamiliesUrl } from "./api";
-import { apiError } from "./api.error";
-import { IGrouppedFamily } from "../../.types";
+import { findFamiliesUrl } from "./api/api";
+import { apiError } from "./api/api.error";
+import { IGrouppedFamily } from "../.types";
 
 interface IDataFamilies {
   message: IGrouppedFamily[];

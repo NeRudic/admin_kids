@@ -2,7 +2,7 @@ import TableHeader from "../components/Table/TableHeader/TableHeader";
 import TableBackground from "../components/Table/TableBackground/TableBackground";
 import { useEffect, useState } from "react";
 import { IGrouppedFamily } from "../.types";
-import { findFamilies } from "../services/api/findFamilies";
+import { findFamilies } from "../services/findFamilies";
 import TableSingleItem from "../components/Table/TableSingleItem/TableSingleItem";
 import "./Families.css";
 
