@@ -64,7 +64,7 @@ export default function NewAdult({
           <input
             type="tel"
             placeholder="Номер телефону"
-            {...register(`adults.${index}.phone`, {
+            {...register(`adults.${index}.phone_number`, {
               required: `Це поле обов'язково!`,
               pattern: {
                 value: /^\+380\d{9}$/,

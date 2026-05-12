@@ -5,7 +5,7 @@ import Svg from "../svg/Svg";
 import NewAdult from "./NewAdult/NewAdult";
 import NewChild from "./NewChild/NewChild.js";
 import TitleSection from "./TitleSection/TitleSection.js";
-import { NewFamilyInterface } from "../../.types";
+import { IGrouppedFamily } from "../../.types";
 import { createFamily } from "../../services/createFamily";
 
 interface NewFamilyProps {
@@ -19,9 +19,9 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
     control,
     formState: { errors, touchedFields, isSubmitted },
     reset,
-  } = useForm<NewFamilyInterface>({
+  } = useForm<IGrouppedFamily>({
     defaultValues: {
-      familyName: "",
+      family_name: "",
       adults: [],
       children: [],
     },
@@ -42,7 +42,7 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
   const children_field_type = () =>
     children.append({ role: null, first_name: "", birthday: "" });
 
-  const onSubmit: SubmitHandler<NewFamilyInterface> = async (requestData) => {
+  const onSubmit: SubmitHandler<IGrouppedFamily> = async (requestData) => {
     console.log(requestData);
 
     try {
@@ -56,7 +56,7 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
     }
   };
 
-  const onInvalid = (formErrors: FieldErrors<NewFamilyInterface>) => {
+  const onInvalid = (formErrors: FieldErrors<IGrouppedFamily>) => {
     console.log("Увага!", formErrors);
   };
 
@@ -80,16 +80,16 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
               <div className="nf_family_wrapper mt-bd">
                 <p className="mt-bd">Сім'я</p>
                 <div className="field_family_name">
-                  {(touchedFields.familyName || isSubmitted) &&
-                    errors.familyName && (
+                  {(touchedFields.family_name || isSubmitted) &&
+                    errors.family_name && (
                       <p className="error_text family_name_error msh-bd">
-                        {errors.familyName.message}
+                        {errors.family_name.message}
                       </p>
                     )}
                   <input
                     type="text"
                     placeholder="Введiть назву сiм'ї"
-                    {...register("familyName", {
+                    {...register("family_name", {
                       required: `Це поле обов'язково!`,
                     })}
                   />

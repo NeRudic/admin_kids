@@ -7,6 +7,7 @@ export interface IGroupper {
   id?: number;
   first_name: string;
   role: string | null;
+  roleId?: string;
   // [key: string]: number | string | undefined | {} | null;
 }
 
@@ -28,21 +29,21 @@ export interface IChildren extends IGroupper {
 }
 
 // Delete this interface in future!
-export interface NewFamilyInterface {
-  family_name: string;
-  family_id?: number;
-  adults: IAdults[];
-  children: IChildren[];
-  [key: string]: string | number | IAdults[] | IChildren[] | undefined;
-}
+// export interface NewFamilyInterface {
+//   family_name: string;
+//   family_id?: number;
+//   adults: IAdults[];
+//   children: IChildren[];
+//   [key: string]: string | number | IAdults[] | IChildren[] | undefined;
+// }
 
 // React Hook Form Fields
 
 export interface NewChildAdultInterface {
   index: number;
-  register: UseFormRegister<NewFamilyInterface>;
+  register: UseFormRegister<IGrouppedFamily>;
   remove: () => void;
-  errors: FieldErrors<NewFamilyInterface>;
+  errors: FieldErrors<IGrouppedFamily>;
 }
 
 // React Children
