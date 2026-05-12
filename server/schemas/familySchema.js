@@ -1,4 +1,4 @@
-import z, { trim } from "zod";
+import z from "zod";
 
 export const FamilySchema = z.object({
   familyName: z.string().min(1, "Прізвище не може бути порожнім!"),
@@ -29,11 +29,10 @@ export const FamilySchema = z.object({
 });
 
 export const FindFamilySchema = z.object({
-  query: z
-    .string()
-    .min(3, "Повинно бути хоча б 3 символи!")
-    .transform((val) => {
-      const clean = val.trim();
-      return clean[0].toUpperCase().concat(clean.slice(1));
-    }),
+  query: z.string().transform((val) => {
+    const clean = val.trim();
+    return clean.length !== 0
+      ? clean[0].toUpperCase().concat(clean.slice(1))
+      : "";
+  }),
 });

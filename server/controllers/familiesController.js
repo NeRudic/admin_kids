@@ -17,7 +17,8 @@ class FamiliesController {
 
   async findFamily(req, res) {
     try {
-      const result = await findFamilyService(req.body);
+      const { query } = req.body;
+      const result = await findFamilyService(query.length > 0 ? query : "");
 
       res.status(200).json({ message: result });
     } catch (err) {
