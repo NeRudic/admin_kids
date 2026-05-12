@@ -26,7 +26,7 @@ export default function NewChild({
         <input
           type="text"
           placeholder="DD.MM.YYYY"
-          {...register(`children.${index}.birthDate`, {
+          {...register(`children.${index}.birthday`, {
             required: "Вкажіть дату народження",
             pattern: {
               value: /^\d{2}\.\d{2}\.\d{4}$/,
@@ -93,7 +93,7 @@ export default function NewChild({
         <input
           type="text"
           placeholder="Iм'я"
-          {...register(`children.${index}.name`, {
+          {...register(`children.${index}.first_name`, {
             required: requireMessage,
           })}
           className="child_name"

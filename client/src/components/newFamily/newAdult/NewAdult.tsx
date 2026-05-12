@@ -51,7 +51,7 @@ export default function NewAdult({
         <input
           type="text"
           placeholder="Iм'я"
-          {...register(`adults.${index}.name`, {
+          {...register(`adults.${index}.first_name`, {
             required: `Це поле обов'язково!`,
           })}
         />
