@@ -55,7 +55,7 @@ export default function Families() {
             }),
           ]}
           key={`family-${family.family_id}`}
-        ></TableSingleItem>
+        />
       );
     });
   }
