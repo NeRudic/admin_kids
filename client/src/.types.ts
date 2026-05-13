@@ -46,6 +46,13 @@ export interface NewChildAdultInterface {
   errors: FieldErrors<IGrouppedFamily>;
 }
 
+// Adults/Children Roles
+
+export interface IRoles {
+  role: string;
+  roleId: number;
+}
+
 // React Children
 
 export interface ChildrenInterface {
