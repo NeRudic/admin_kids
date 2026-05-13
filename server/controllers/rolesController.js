@@ -1,4 +1,4 @@
-import { getRolesService } from "../services/rolesService";
+import { getRolesService } from "../services/rolesService.js";
 
 class RolesController {
   async getRoles(req, res) {

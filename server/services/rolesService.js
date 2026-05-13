@@ -1,4 +1,4 @@
-import { db } from "../app";
+import { db } from "../app.js";
 
 export async function getRolesService() {
   const adultsRolesResult = await db.all(`
