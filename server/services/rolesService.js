@@ -6,7 +6,7 @@ export async function getRolesService() {
     `);
 
   const childrenRolesResult = await db.all(`
-    SELECT cr.id, cr.role FROM children_role AS cr
+    SELECT cr.id, cr.role FROM child_role AS cr
     `);
 
   return {
