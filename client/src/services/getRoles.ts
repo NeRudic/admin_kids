@@ -3,15 +3,19 @@ import { IRoles } from "../.types";
 import { getRolesUrl } from "../services/api/api";
 import { Dispatch, SetStateAction } from "react";
 
-let rolesPromise: Promise<IRoles[]> | null = null;
+let rolesPromise: Promise<IRoles> | null = null;
+
+interface IGetData {
+  message: IRoles;
+}
 
 export async function getRoles(
-  setState: Dispatch<SetStateAction<IRoles[] | null>>,
+  setState: Dispatch<SetStateAction<IRoles | null>>,
 ) {
   if (!rolesPromise) {
     rolesPromise = axios
-      .get<IRoles[]>(getRolesUrl)
-      .then((res) => res.data)
+      .get<IGetData>(getRolesUrl)
+      .then((res) => res.data.message)
       .catch(() => {
         rolesPromise = null;
         throw new Error("Get Roles Error!");

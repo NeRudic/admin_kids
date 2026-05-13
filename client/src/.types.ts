@@ -48,9 +48,14 @@ export interface NewChildAdultInterface {
 
 // Adults/Children Roles
 
-export interface IRoles {
+export interface IRole {
   role: string;
-  roleId: number;
+  id: number;
+}
+
+export interface IRoles {
+  adults_roles: IRole[];
+  children_roles: IRole[];
 }
 
 // React Children

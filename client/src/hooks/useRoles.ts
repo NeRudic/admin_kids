@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { IRoles } from "../.types";
 
 export const useRoles = () => {
-  const [roles, setRoles] = useState<IRoles[] | null>(null);
+  const [roles, setRoles] = useState<IRoles | null>(null);
 
   useEffect(() => {
     const fetch = async () => {

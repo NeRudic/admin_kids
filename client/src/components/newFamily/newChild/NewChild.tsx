@@ -1,6 +1,7 @@
 import Svg from "../../svg/Svg";
 import "./NewChild.css";
 import { NewChildAdultInterface } from "../../../.types";
+import { useRoles } from "../../../hooks/useRoles";
 
 export default function NewChild({
   index,
@@ -14,6 +15,9 @@ export default function NewChild({
   const childrenDateError = errors?.children?.[index]?.birthday?.message;
 
   const requireMessage = `Це поле обов'язково!`;
+
+  const roles = useRoles();
+  console.log(roles);
 
   return (
     <div className="nf_child mt-bd">
