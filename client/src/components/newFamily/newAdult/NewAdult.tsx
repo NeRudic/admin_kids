@@ -34,18 +34,7 @@ export default function NewAdult({
             required: "Оберіть роль",
           })}
         >
-          <option value="1" data-role_name="Мама">
-            Мама
-          </option>
-          <option value="2" data-role_name="Тато">
-            Тато
-          </option>
-          <option value="7" data-role_name="Бабуся">
-            Бабуся
-          </option>
-          <option value="8" data-role_name="Дідусь">
-            Дідусь
-          </option>
+          {adults_roles}
         </select>
 
         <div className="svg_drop_down">{svg_drop_down()}</div>
