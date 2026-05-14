@@ -48,7 +48,6 @@ export default function NewFamily({ newClientModalHandler }: NewFamilyProps) {
     try {
       await createFamily(requestData);
 
-      console.log("Success!");
       reset();
       newClientModalHandler();
     } catch (e) {
