@@ -1,6 +1,7 @@
 import "./NewAdult.css";
 import Svg from "../../svg/Svg";
 import { NewChildAdultInterface } from "../../../.types";
+import { useRoles } from "../../../hooks/useRoles";
 
 export default function NewAdult({
   index,
@@ -13,6 +14,12 @@ export default function NewAdult({
   const nameError = errors?.adults?.[index]?.first_name?.message;
   const phoneError = errors?.adults?.[index]?.phone_number?.message;
   const adultRoleError = errors?.adults?.[index]?.role?.message;
+
+  const adults_roles = useRoles()?.adults_roles.map((adult) => (
+    <option key={adult.role} value={adult.id} data-role_name={adult.role}>
+      {adult.role}
+    </option>
+  ));
 
   return (
     <div className="nf_adult mt-bd">

@@ -16,8 +16,11 @@ export default function NewChild({
 
   const requireMessage = `Це поле обов'язково!`;
 
-  const roles = useRoles();
-  console.log(roles);
+  const children_roles = useRoles()?.children_roles.map((child) => (
+    <option key={child.role} value={child.id} data-role_name={child.role}>
+      {child.role}
+    </option>
+  ));
 
   return (
     <div className="nf_child mt-bd">
@@ -80,12 +83,7 @@ export default function NewChild({
             required: `Оберіть роль`,
           })}
         >
-          <option value="1" data-role_name="Син">
-            Син
-          </option>
-          <option value="2" data-role_name="Донька">
-            Донька
-          </option>
+          {children_roles}
         </select>
         <div className="svg_drop_down">{svg_drop_down()}</div>
       </div>
