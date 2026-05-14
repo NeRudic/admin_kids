@@ -17,7 +17,7 @@ export default function NewChild({
   const requireMessage = `Це поле обов'язково!`;
 
   const children_roles = useRoles()?.children_roles.map((child) => (
-    <option key={child.role} value={child.id} data-role_name={child.role}>
+    <option key={child.role} value={child.roleId} data-role_name={child.role}>
       {child.role}
     </option>
   ));

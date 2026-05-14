@@ -16,7 +16,7 @@ export default function NewAdult({
   const adultRoleError = errors?.adults?.[index]?.role?.message;
 
   const adults_roles = useRoles()?.adults_roles.map((adult) => (
-    <option key={adult.role} value={adult.id} data-role_name={adult.role}>
+    <option key={adult.role} value={adult.roleId} data-role_name={adult.role}>
       {adult.role}
     </option>
   ));
