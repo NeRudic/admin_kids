@@ -1,7 +1,7 @@
 import { db } from "../app.js";
 import { groupper } from "./utilities/groupper.js";
 
-export async function createFamilyService({ familyName, adults, children }) {
+export async function createFamilyService({ family_name, adults, children }) {
   try {
     //Begin the transaction
     await db.run("BEGIN TRANSACTION");
@@ -9,7 +9,7 @@ export async function createFamilyService({ familyName, adults, children }) {
     //Create a new family
     const familyResult = await db.run(
       `INSERT INTO family (family_name) VALUES (?)`,
-      [familyName],
+      [family_name],
     );
 
     const familyId = familyResult.lastID;
@@ -41,7 +41,7 @@ export async function createFamilyService({ familyName, adults, children }) {
 
     await db.run(`COMMIT`);
 
-    return { id: familyId, familyName: familyName };
+    return { id: familyId, family_name: family_name };
   } catch (err) {
     await db.run(`ROLLBACK`);
     // console.error("Database Error:", error.message);
@@ -49,7 +49,7 @@ export async function createFamilyService({ familyName, adults, children }) {
   }
 }
 
-export async function findFamilyService({ query }) {
+export async function findFamilyService(query) {
   try {
     // Find adults
     const adultsFindResult = await db.all(

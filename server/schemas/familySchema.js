@@ -1,13 +1,13 @@
 import z from "zod";
 
 export const FamilySchema = z.object({
-  familyName: z.string().min(1, "Прізвище не може бути порожнім!"),
+  family_name: z.string().min(1, "Прізвище не може бути порожнім!"),
 
   adults: z
     .array(
       z.object({
         first_name: z.string().min(1, "Ім'я не може бути порожнім!"),
-        phone: z
+        phone_number: z
           .string()
           .regex(/^\+380\d{9}$/, "Неправильний формат телефону!"),
         roleId: z.number().min(1, "Роль не може бути порожньою!"),
