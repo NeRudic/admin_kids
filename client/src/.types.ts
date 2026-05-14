@@ -7,7 +7,7 @@ export interface IGroupper {
   id?: number;
   first_name: string;
   role: string | null;
-  roleId?: string;
+  roleId?: number;
   // [key: string]: number | string | undefined | {} | null;
 }
 
@@ -50,7 +50,7 @@ export interface NewChildAdultInterface {
 
 export interface IRole {
   role: string;
-  id: number;
+  roleId: number;
 }
 
 export interface IRoles {
